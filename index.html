@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOLAidees — Livres, savoirs, création</title>
+  <meta name="description" content="KOLAidees est une identité éditoriale et créative dédiée aux savoirs, aux idées et à la création. Premier projet : Oser la démence artistique, Tome I — Le Manifeste." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" />
+
+  <!-- Open Graph — og:url and og:image are intentionally omitted: there is
+       no real deployed URL or share image yet. Add them (from SITE_URL /
+       OG_IMAGE_URL) once the site is actually live. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="KOLAidees" />
+  <meta property="og:title" content="KOLAidees — Livres, savoirs, création" />
+  <meta property="og:description" content="Une identité éditoriale et créative dédiée aux savoirs, aux idées et à la création. Découvrez Oser la démence artistique, Tome I — Le Manifeste." />
+  <!-- <meta property="og:url" content="SITE_URL + /" /> -->
+  <!-- <meta property="og:image" content="OG_IMAGE_URL" /> -->
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="KOLAidees — Livres, savoirs, création" />
+  <meta name="twitter:description" content="Oser la démence artistique, Tome I — Le Manifeste, et les prochains projets de KOLAidees." />
+
+  <!-- <link rel="canonical" href="SITE_URL + /" /> add once the site is deployed and SITE_URL is set -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "KOLAidees",
+    "description": "Identité éditoriale et créative dédiée aux savoirs, aux idées et à la création.",
+    "sameAs": [
+      "https://www.tiktok.com/@kola_idees",
+      "https://www.instagram.com/kola.idees/",
+      "https://www.facebook.com/profile.php?id=61592982996384"
+    ]
+  }
+  </script>
+</head>
+<body data-page="home">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="container" style="padding: 72px 24px 96px;">
+      <div class="hero-row" style="display: flex; align-items: center; gap: 64px;">
+        <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 22px;">
+          <span class="kicker">KOLAidees</span>
+          <h1 style="font-size: clamp(34px, 5vw, 56px); font-weight: 900;">Livres, savoirs, création.</h1>
+          <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.5; margin: 0; max-width: 520px; opacity: 0.85;">Faire grandir les idées&nbsp;: KOLAidees publie des manifestes, des livres et des projets qui donnent une existence réelle à ce qu'on ose enfin créer.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px;">
+            <a class="btn btn-primary" href="/projets/oser-la-demence-artistique/">Découvrir le premier livre</a>
+            <a class="btn btn-ghost" href="/projets/">Voir tous les projets</a>
+          </div>
+        </div>
+        <div class="hero-visual" style="flex: 0 0 280px; display: flex; justify-content: center;">
+          <div class="book-cover">
+            <div class="book-cover__shard-a"></div>
+            <div class="book-cover__shard-b"></div>
+            <span class="kicker" style="color: var(--cream);">KOLAidees</span>
+            <h3 class="book-cover__title">OSER LA<br>DÉMENCE<br>ARTISTIQUE</h3>
+            <div>
+              <span style="display: block; color: var(--cream); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;">Tome I — Le Manifeste</span>
+              <span style="color: rgba(247,241,230,0.6); font-size: 12px;">Cyril Mukendi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="padding: 0 24px 96px;">
+      <div class="card" style="padding: 36px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
+        <div>
+          <span class="kicker">Premier projet</span>
+          <h2 style="font-size: 24px; font-weight: 900; margin-top: 8px;">Oser la démence artistique — Tome I&nbsp;: Le Manifeste</h2>
+          <p style="margin: 8px 0 0; font-size: 15px; opacity: 0.8; max-width: 520px;">Un manifeste incisif, drôle et pragmatique pour déconstruire la censure intérieure et créer sans demander la permission.</p>
+        </div>
+        <a class="btn btn-primary" href="/projets/oser-la-demence-artistique/">Lire le manifeste</a>
+      </div>
+    </section>
+
+    <section id="newsletter-root" class="newsletter">
+      <div class="container">
+        <h2>Restez informé&middot;e</h2>
+        <p>Recevez les prochaines étapes du manifeste et les nouveautés de KOLAidees.</p>
+        <p class="newsletter-confirmation" data-newsletter-confirmation hidden></p>
+        <form class="newsletter-form">
+          <label for="home-email" class="sr-only" style="position: absolute; left: -9999px;">Adresse email</label>
+          <input class="email-input" id="home-email" name="email" type="email" required placeholder="votre@email.com" />
+          <button type="submit" class="btn btn-primary">Recevoir les nouveautés de KOLAidees</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+
+  <script type="module" src="/src/js/pages/home.js"></script>
+</body>
+</html>
