@@ -15,6 +15,10 @@ export default defineConfig({
           'projets/oser-la-demence-artistique/index.html'
         ),
         aPropos: resolve(__dirname, 'a-propos/index.html'),
+        daringArtisticMadness: resolve(
+          __dirname,
+          'daring-artistic-madness/index.html'
+        ),
       },
     },
   },

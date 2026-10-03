@@ -162,7 +162,11 @@ img, svg { max-width: 100%; display: block; }
 }
 .book-cover__title { position: relative; font-size: 30px; font-weight: 900; line-height: 1.02; }
 
+/* --- 3-column grid (e.g. Daring Artistic Madness theme list) ------------ */
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+
 @media (max-width: 900px) {
+  .grid-3 { grid-template-columns: repeat(1, minmax(0,1fr)); }
   .desktop-nav { display: none; }
   .hamburger { display: flex; }
   .hero-row { flex-direction: column; }

@@ -6,6 +6,14 @@ export const BRAND_NAME = 'KOLAidees';
 // Real, public Amazon product page — never the KDP link.
 export const AMAZON_BOOK_URL = 'https://www.amazon.fr/dp/B0HJ8JXMN8';
 
+// English (US) edition — "Daring Artistic Madness" — already published on
+// KDP. URLs are the standard Amazon /dp/<ASIN> form built from the two
+// official ASINs provided for this edition (Kindle: B0HLVCT57T, Paperback:
+// B0HLWL8P9V), the same construction already used for AMAZON_BOOK_URL
+// above — never guessed.
+export const AMAZON_BOOK_URL_EN_KINDLE = 'https://www.amazon.com/dp/B0HLVCT57T';
+export const AMAZON_BOOK_URL_EN_PAPERBACK = 'https://www.amazon.com/dp/B0HLWL8P9V';
+
 export const SOCIAL = {
   tiktok: 'https://www.tiktok.com/@kola_idees/video/7690043628156194070?lang=fr',
   instagram: 'https://www.instagram.com/kola.idees/',

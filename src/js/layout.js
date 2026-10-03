@@ -51,18 +51,39 @@ export function renderHeader(currentPage) {
   );
 }
 
-export function renderFooter() {
+// Footer copy by language. 'fr' is the existing, unchanged default used by
+// every page already calling renderFooter() with no argument. 'en' is used
+// only by the English edition page (renderFooter('en')).
+const FOOTER_COPY = {
+  fr: {
+    tagline: 'Oser la démence artistique',
+    disclaimer:
+      'Ce contenu est présenté à titre créatif et éditorial&nbsp;; il ne remplace pas un avis médical ou psychologique professionnel.',
+    rights: 'Tous droits réservés.',
+    privacy: 'Politique de confidentialité',
+  },
+  en: {
+    tagline: 'Daring Artistic Madness',
+    disclaimer:
+      'This content is presented for creative and editorial purposes; it does not replace professional medical or psychological advice.',
+    rights: 'All rights reserved.',
+    privacy: 'Privacy Policy',
+  },
+};
+
+export function renderFooter(lang = 'fr') {
   const footer = document.getElementById('site-footer');
   if (!footer) return;
 
   const year = new Date().getFullYear();
+  const t = FOOTER_COPY[lang] || FOOTER_COPY.fr;
 
   footer.innerHTML = `
     <div class="container">
       <div class="site-footer__row">
         <div>
           <span class="brand">${BRAND_NAME}</span>
-          <p style="margin: 6px 0 0; font-size: 14px; opacity: 0.7;">Oser la démence artistique</p>
+          <p style="margin: 6px 0 0; font-size: 14px; opacity: 0.7;">${t.tagline}</p>
         </div>
         <div class="site-footer__social">
           <a class="nav-link" href="${SOCIAL.tiktok}" target="_blank" rel="noopener">TikTok</a>
@@ -71,10 +92,10 @@ export function renderFooter() {
           <a class="nav-link" href="${SOCIAL.goodreads}" target="_blank" rel="noopener">Goodreads</a>
         </div>
       </div>
-      <p class="disclaimer">Ce contenu est présenté à titre créatif et éditorial&nbsp;; il ne remplace pas un avis médical ou psychologique professionnel.</p>
+      <p class="disclaimer">${t.disclaimer}</p>
       <div class="site-footer__legal">
-        <span>&copy; ${year} ${BRAND_NAME}. Tous droits réservés.</span>
-        <a href="${PRIVACY_URL}" style="text-decoration: underline;">Politique de confidentialité</a>
+        <span>&copy; ${year} ${BRAND_NAME}. ${t.rights}</span>
+        <a href="${PRIVACY_URL}" style="text-decoration: underline;">${t.privacy}</a>
       </div>
     </div>
   `;
