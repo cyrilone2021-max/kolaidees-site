@@ -35,6 +35,7 @@ export const PAGES = [
     translationKey: 'oser-tome-1',
   },
   { name: 'aPropos', path: '/a-propos/', lang: 'fr' },
+  { name: 'politiqueDeConfidentialite', path: '/politique-de-confidentialite/', lang: 'fr' },
 ];
 
 // Normalises '/x/index.html', '/x' and '/x/' to '/x/'.
