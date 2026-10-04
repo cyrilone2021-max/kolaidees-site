@@ -1,5 +1,6 @@
 import '../../css/style.css';
 import { renderHeader, renderFooter } from '../layout.js';
+import { initTracking } from '../tracking.js';
 import { projects } from '../../data/projects.js';
 
 renderHeader('projets');
@@ -19,3 +20,6 @@ if (grid) {
     )
     .join('');
 }
+
+// Anonymous audience events for 1CLIC Control Tower (see tracking.js).
+initTracking();

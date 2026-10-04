@@ -2,9 +2,11 @@
 // empty. This is the ONLY behaviour implemented: no fetch/XHR call exists
 // anywhere in this module outside the (currently unreachable) branch that
 // would use a real endpoint, so no email is ever sent anywhere as things
-// stand.
+// stand. A submission is counted as an anonymous "newsletter_signup" event
+// (see tracking.js) — the address itself is never part of it.
 
 import { NEWSLETTER_ENDPOINT, BRAND_NAME } from '../config/site.js';
+import { trackNewsletterSignup } from './tracking.js';
 
 export function mountNewsletterForm(root) {
   if (!root) return;
@@ -19,6 +21,7 @@ export function mountNewsletterForm(root) {
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+    trackNewsletterSignup();
 
     if (!NEWSLETTER_ENDPOINT) {
       // No real backend configured: simulate success locally, hide the
