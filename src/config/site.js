@@ -33,8 +33,8 @@ export const SITE_URL = import.meta.env.VITE_SITE_URL || '';
 // Real Open Graph share image, once one exists.
 export const OG_IMAGE_URL = import.meta.env.VITE_OG_IMAGE_URL || '';
 
-// Privacy policy link — placeholder until a real page/URL exists.
-export const PRIVACY_URL = '#';
+// Privacy policy page (French only; also linked from the English footer).
+export const PRIVACY_URL = '/politique-de-confidentialite/';
 
 // Newsletter endpoint — Pages Function that starts the Resend double
 // opt-in (see functions/api/newsletter/subscribe.js and src/js/newsletter.js).

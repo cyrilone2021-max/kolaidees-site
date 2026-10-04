@@ -188,3 +188,11 @@ a.lang-switch__item:hover { color: var(--accent); }
   .grid-5 { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .projects-grid { grid-template-columns: repeat(1, minmax(0,1fr)); }
 }
+
+/* --- Legal pages ------------------------------------------------------------ */
+.legal h2 { font-size: clamp(20px, 2.4vw, 24px); font-weight: 900; margin: 40px 0 12px; }
+.legal p, .legal li { font-size: 16px; line-height: 1.7; }
+.legal p { margin: 0 0 12px; }
+.legal ul { padding-left: 22px; margin: 0 0 12px; }
+.legal a { text-decoration: underline; }
+.legal__updated { font-size: 14px !important; opacity: 0.65; margin-top: 10px !important; }
