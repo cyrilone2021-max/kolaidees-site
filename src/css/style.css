@@ -171,6 +171,10 @@ a.lang-switch__item:hover { color: var(--accent); }
 /* --- 3-column grid (e.g. Daring Artistic Madness theme list) ------------ */
 .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
 
+/* --- 4- and 5-column grids (Oser la démence artistique) ------------------ */
+.grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.grid-5 { grid-template-columns: repeat(5, minmax(0,1fr)); }
+
 @media (max-width: 900px) {
   .grid-3 { grid-template-columns: repeat(1, minmax(0,1fr)); }
   .desktop-nav { display: none; }
