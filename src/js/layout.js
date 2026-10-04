@@ -9,6 +9,7 @@ import {
   SOCIAL,
   PRIVACY_URL,
 } from '../config/site.js';
+import { languageTarget } from '../config/pages.js';
 
 // Header copy by language. 'fr' is the existing default used by every
 // French page (renderHeader(page) with no lang). 'en' is used only by the
@@ -40,19 +41,14 @@ const HEADER_COPY = {
   },
 };
 
-// FR/EN switch. The only English page is the English edition of the book,
-// so: any French page -> EN = English edition; English page -> FR = the
-// French book page (its French equivalent).
-const LANG_TARGETS = {
-  fr: '/projets/oser-la-demence-artistique/',
-  en: '/daring-artistic-madness/',
-};
-
+// FR/EN switch: targets come from the page registry (src/config/pages.js) —
+// the translated version of the current page, or the language fallback page
+// when the current page has no translation.
 function langSwitchHtml(lang, label) {
   const item = (code) =>
     code === lang
       ? `<span class="lang-switch__item" aria-current="true">${code.toUpperCase()}</span>`
-      : `<a class="lang-switch__item" href="${LANG_TARGETS[code]}" hreflang="${code}" lang="${code}">${code.toUpperCase()}</a>`;
+      : `<a class="lang-switch__item" href="${languageTarget(window.location.pathname, code)}" hreflang="${code}" lang="${code}">${code.toUpperCase()}</a>`;
   return `<div class="lang-switch" role="group" aria-label="${label}">${item('fr')}<span class="lang-switch__sep" aria-hidden="true">|</span>${item('en')}</div>`;
 }
 
