@@ -1,34 +1,73 @@
 import { resolve } from 'node:path';
 import { defineConfig, loadEnv } from 'vite';
+import {
+  PAGES,
+  LOCALES,
+  findPage,
+  translationsOf,
+  validateRegistry,
+} from './src/config/pages.js';
 
 // Multi-page vanilla site — no framework, kept intentionally simple and
-// evolutive: each real page below is a plain HTML entry point sharing
-// CSS/JS from src/. Adding a page later means adding one more entry here —
-// it is then automatically built AND listed in the generated sitemap.xml.
-const PAGES = [
-  { name: 'main', path: '/' },
-  { name: 'projets', path: '/projets/' },
-  {
-    name: 'projetOserLaDemenceArtistique',
-    path: '/projets/oser-la-demence-artistique/',
-  },
-  { name: 'daringArtisticMadness', path: '/daring-artistic-madness/' },
-  { name: 'aPropos', path: '/a-propos/' },
-];
+// evolutive. Pages are declared once in src/config/pages.js: each entry is
+// automatically built, listed in sitemap.xml and given its canonical,
+// og:url, og:locale and hreflang tags.
 
-// Generates dist/sitemap.xml and dist/robots.txt at build time from
-// VITE_SITE_URL (set in .env.production), so the official public URL has a
-// single source. The build fails if VITE_SITE_URL is missing, rather than
-// publishing a sitemap with wrong or relative URLs.
+function requireSiteUrl(siteUrl) {
+  if (!siteUrl) {
+    throw new Error('VITE_SITE_URL is not set: cannot generate SEO URLs, sitemap.xml and robots.txt.');
+  }
+  return siteUrl.replace(/\/+$/, '');
+}
+
+// Injects canonical / og:url / og:locale(:alternate) / hreflang into each
+// page from the registry, and fails the build if a page is missing from the
+// registry or its <html lang> does not match the registry.
+function seoHeadTags(siteUrl) {
+  return {
+    name: 'kolaidees-seo-head-tags',
+    apply: 'build',
+    transformIndexHtml(html, ctx) {
+      const page = findPage(ctx.path);
+      if (!page) {
+        throw new Error(`${ctx.path} is not declared in src/config/pages.js`);
+      }
+      const htmlLang = (html.match(/<html[^>]*\blang="([^"]+)"/) || [])[1];
+      if (htmlLang !== page.lang) {
+        throw new Error(
+          `${ctx.path}: <html lang="${htmlLang}"> does not match lang "${page.lang}" in src/config/pages.js`
+        );
+      }
+      const base = requireSiteUrl(siteUrl);
+      const translations = translationsOf(page);
+      const tags = [
+        { tag: 'link', attrs: { rel: 'canonical', href: `${base}${page.path}` } },
+        { tag: 'meta', attrs: { property: 'og:url', content: `${base}${page.path}` } },
+        { tag: 'meta', attrs: { property: 'og:locale', content: LOCALES[page.lang] } },
+      ];
+      for (const t of translations) {
+        if (t !== page) {
+          tags.push({ tag: 'meta', attrs: { property: 'og:locale:alternate', content: LOCALES[t.lang] } });
+        }
+      }
+      if (translations.length > 1) {
+        for (const t of translations) {
+          tags.push({ tag: 'link', attrs: { rel: 'alternate', hreflang: t.lang, href: `${base}${t.path}` } });
+        }
+      }
+      return tags.map((t) => ({ ...t, injectTo: 'head' }));
+    },
+  };
+}
+
+// Generates dist/sitemap.xml and dist/robots.txt from VITE_SITE_URL and the
+// page registry. The build fails if VITE_SITE_URL is missing.
 function seoFiles(siteUrl) {
   return {
     name: 'kolaidees-seo-files',
     apply: 'build',
     generateBundle() {
-      if (!siteUrl) {
-        this.error('VITE_SITE_URL is not set: cannot generate sitemap.xml and robots.txt.');
-      }
-      const base = siteUrl.replace(/\/+$/, '');
+      const base = requireSiteUrl(siteUrl);
       const urls = PAGES.map(
         (p) => `  <url>\n    <loc>${base}${p.path}</loc>\n  </url>\n`
       ).join('');
@@ -51,10 +90,11 @@ function seoFiles(siteUrl) {
 }
 
 export default defineConfig(({ mode }) => {
+  validateRegistry();
   const env = loadEnv(mode, process.cwd(), 'VITE_');
 
   return {
-    plugins: [seoFiles(env.VITE_SITE_URL)],
+    plugins: [seoHeadTags(env.VITE_SITE_URL), seoFiles(env.VITE_SITE_URL)],
     build: {
       rollupOptions: {
         input: Object.fromEntries(

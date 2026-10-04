@@ -7,7 +7,7 @@ import { AMAZON_BOOK_URL_EN_KINDLE } from '../../config/site.js';
 // block is mounted here since both currently render French-only copy
 // (see src/js/newsletter.js and renderSocialLinks in src/js/layout.js) and
 // this page must not carry accidental French content.
-renderHeader('daring-artistic-madness');
+renderHeader('daring-artistic-madness', 'en');
 renderFooter('en');
 
 // Kindle button: href comes from the single source of truth in site.js.

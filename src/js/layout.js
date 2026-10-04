@@ -2,35 +2,87 @@
 // #site-header / #site-footer placeholders. One source of truth: a new
 // nav link or social link is added here once, not per page.
 
-import { BRAND_NAME, AMAZON_BOOK_URL, SOCIAL, PRIVACY_URL } from '../config/site.js';
+import {
+  BRAND_NAME,
+  AMAZON_BOOK_URL,
+  AMAZON_BOOK_URL_EN_KINDLE,
+  SOCIAL,
+  PRIVACY_URL,
+} from '../config/site.js';
+import { languageTarget } from '../config/pages.js';
 
+// Header copy by language. 'fr' is the existing default used by every
+// French page (renderHeader(page) with no lang). 'en' is used only by the
+// English edition page: same links (they still lead to the French pages for
+// now), English labels, and a "Get the book" button opening the Amazon.com
+// Kindle page.
 const NAV_LINKS = [
-  { href: '/', label: 'Accueil', page: 'home' },
-  { href: '/projets/', label: 'Projets', page: 'projets' },
-  { href: '/a-propos/', label: 'À propos', page: 'a-propos' },
+  { href: '/', label: { fr: 'Accueil', en: 'Home' }, page: 'home' },
+  { href: '/projets/', label: { fr: 'Projets', en: 'Projects' }, page: 'projets' },
+  { href: '/a-propos/', label: { fr: 'À propos', en: 'About' }, page: 'a-propos' },
 ];
 
-function navLinkHtml(link, currentPage, extraClass = '') {
-  const current = link.page === currentPage ? ' aria-current="page"' : '';
-  return `<a class="nav-link ${extraClass}" href="${link.href}"${current}>${link.label}</a>`;
+const HEADER_COPY = {
+  fr: {
+    mainNav: 'Navigation principale',
+    mobileNav: 'Navigation mobile',
+    openMenu: 'Ouvrir le menu',
+    langSwitch: 'Langue',
+    buyLabel: 'Découvrir le livre',
+    buyUrl: AMAZON_BOOK_URL,
+  },
+  en: {
+    mainNav: 'Main navigation',
+    mobileNav: 'Mobile navigation',
+    openMenu: 'Open menu',
+    langSwitch: 'Language',
+    buyLabel: 'Get the book',
+    buyUrl: AMAZON_BOOK_URL_EN_KINDLE,
+  },
+};
+
+// FR/EN switch: targets come from the page registry (src/config/pages.js) —
+// the translated version of the current page, or the language fallback page
+// when the current page has no translation.
+function langSwitchHtml(lang, label) {
+  const item = (code) =>
+    code === lang
+      ? `<span class="lang-switch__item" aria-current="true">${code.toUpperCase()}</span>`
+      : `<a class="lang-switch__item" href="${languageTarget(window.location.pathname, code)}" hreflang="${code}" lang="${code}">${code.toUpperCase()}</a>`;
+  return `<div class="lang-switch" role="group" aria-label="${label}">${item('fr')}<span class="lang-switch__sep" aria-hidden="true">|</span>${item('en')}</div>`;
 }
 
-export function renderHeader(currentPage) {
+function navLinkHtml(link, currentPage, lang, extraClass = '') {
+  const current = link.page === currentPage ? ' aria-current="page"' : '';
+  return `<a class="nav-link ${extraClass}" href="${link.href}"${current}>${link.label[lang] || link.label.fr}</a>`;
+}
+
+export function renderHeader(currentPage, lang = 'fr') {
   const header = document.getElementById('site-header');
   if (!header) return;
+
+  const t = HEADER_COPY[lang] || HEADER_COPY.fr;
+  const links = NAV_LINKS.map((l) => navLinkHtml(l, currentPage, lang)).join('');
+  const langSwitch = langSwitchHtml(lang, t.langSwitch);
+  // Purchase button: Amazon.fr on French pages (unchanged), Amazon.com
+  // Kindle on the English page.
+  const buyDesktop = `<a class="btn btn-primary" href="${t.buyUrl}" target="_blank" rel="noopener">${t.buyLabel}</a>`;
+  const buyMobile = `<a class="btn btn-primary" href="${t.buyUrl}" target="_blank" rel="noopener" style="margin-top: 8px; width: fit-content;">${t.buyLabel}</a>`;
 
   header.innerHTML = `
     <div class="site-header__row">
       <a class="brand" href="/">${BRAND_NAME}</a>
-      <nav class="desktop-nav" aria-label="Navigation principale">
-        ${NAV_LINKS.map((l) => navLinkHtml(l, currentPage)).join('')}
-        <a class="btn btn-primary" href="${AMAZON_BOOK_URL}" target="_blank" rel="noopener">Découvrir le livre</a>
+      <nav class="desktop-nav" aria-label="${t.mainNav}">
+        ${links}
+        ${langSwitch}
+        ${buyDesktop}
       </nav>
-      <button class="hamburger" id="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav">☰</button>
+      <button class="hamburger" id="nav-toggle" aria-label="${t.openMenu}" aria-expanded="false" aria-controls="mobile-nav">☰</button>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Navigation mobile">
-      ${NAV_LINKS.map((l) => navLinkHtml(l, currentPage)).join('')}
-      <a class="btn btn-primary" href="${AMAZON_BOOK_URL}" target="_blank" rel="noopener" style="margin-top: 8px; width: fit-content;">Découvrir le livre</a>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="${t.mobileNav}">
+      ${links}
+      ${langSwitch}
+      ${buyMobile}
     </nav>
   `;
 

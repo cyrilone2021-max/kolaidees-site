@@ -105,6 +105,12 @@ img, svg { max-width: 100%; display: block; }
 }
 .mobile-nav.is-open { display: flex; }
 .mobile-nav .nav-link { padding: 12px 0; }
+.lang-switch { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; }
+.lang-switch__item { padding: 6px 4px; }
+a.lang-switch__item:hover { color: var(--accent); }
+.lang-switch__item[aria-current="true"] { color: var(--accent); }
+.lang-switch__sep { opacity: 0.4; }
+.mobile-nav .lang-switch { padding: 12px 0; }
 
 /* --- Footer ----------------------------------------------------------- */
 .site-footer { padding: 56px 24px 40px; border-top: 1px solid var(--line); }
