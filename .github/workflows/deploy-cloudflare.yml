@@ -1,0 +1,56 @@
+# Production deployment of the KOLAidees site to the EXISTING Cloudflare Pages
+# project "kolaidees-site" (Direct Upload project — no native Git integration).
+#
+# Flow: push to main → npm ci → npm run build → wrangler pages deploy dist
+#       → https://kolaidees-site.pages.dev/
+#
+# Required GitHub Actions secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — API token limited to: Account → Cloudflare Pages → Edit
+#   CLOUDFLARE_ACCOUNT_ID  — Cloudflare account ID
+# No secret value is stored in this file.
+
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-pages-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy (production)
+    runs-on: ubuntu-latest
+    # Safety guard: even a manual run (workflow_dispatch) launched from another
+    # branch is skipped — only main is ever deployed.
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy dist to Cloudflare Pages (kolaidees-site, production)
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=kolaidees-site --branch=main --commit-hash=${{ github.sha }}
