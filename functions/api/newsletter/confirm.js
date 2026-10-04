@@ -4,10 +4,17 @@
 // here. A valid, unexpired token (see lib/newsletter-token.js) creates the
 // contact in Resend (or re-subscribes it if it already exists) and adds it
 // to RESEND_SEGMENT_ID when set. Answers with a small standalone HTML page.
+//
+// Welcome email: for a new subscriber (new contact, or a former one coming
+// back), the Resend event WELCOME_EVENT is sent. A Resend Automation
+// triggered by that event sends the welcome template — configured in the
+// Resend dashboard, not here. Clicking the same link twice, or confirming
+// while already subscribed, does not send the event again.
 
 import { verifyToken } from '../../../lib/newsletter-token.js';
 
 const RESEND = 'https://api.resend.com';
+const WELCOME_EVENT = 'kolaidees.subscribed';
 
 function page(title, message, status) {
   const html = `<!doctype html>
@@ -49,21 +56,41 @@ export async function onRequestGet({ request, env }) {
     );
   }
 
+  const contactPath = `/contacts/${encodeURIComponent(email)}`;
+
+  // True only when this confirmation actually starts a subscription.
+  let isNewSubscriber = false;
+
   let res = await resend(env, '/contacts', 'POST', { email, unsubscribed: false });
-  if (!res.ok) {
-    // Already a contact (possibly unsubscribed earlier): an explicit new
-    // confirmation re-subscribes it.
-    res = await resend(env, `/contacts/${encodeURIComponent(email)}`, 'PATCH', { unsubscribed: false });
+  if (res.ok) {
+    isNewSubscriber = true;
+  } else {
+    // Already a contact. If it had unsubscribed, this explicit new
+    // confirmation re-subscribes it; if it is still subscribed (e.g. the
+    // link is clicked twice), nothing changes.
+    const existing = await resend(env, contactPath, 'GET');
+    const contact = existing.ok ? await existing.json().catch(() => null) : null;
+    if (!contact || contact.unsubscribed) {
+      res = await resend(env, contactPath, 'PATCH', { unsubscribed: false });
+      isNewSubscriber = res.ok && Boolean(contact);
+    } else {
+      res = existing;
+    }
   }
   if (res.ok && env.RESEND_SEGMENT_ID) {
     res = await resend(
       env,
-      `/contacts/${encodeURIComponent(email)}/segments/${encodeURIComponent(env.RESEND_SEGMENT_ID)}`,
+      `${contactPath}/segments/${encodeURIComponent(env.RESEND_SEGMENT_ID)}`,
       'POST'
     );
   }
   if (!res.ok) {
     return page('Une erreur est survenue', "Votre inscription n'a pas pu être enregistrée. Réessayez dans quelques minutes.", 502);
+  }
+
+  // Best effort: a failure here must not undo a successful subscription.
+  if (isNewSubscriber) {
+    await resend(env, '/events/send', 'POST', { event: WELCOME_EVENT, email }).catch(() => {});
   }
 
   return page(
