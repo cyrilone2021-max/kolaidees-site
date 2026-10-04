@@ -36,7 +36,6 @@ export const OG_IMAGE_URL = import.meta.env.VITE_OG_IMAGE_URL || '';
 // Privacy policy link — placeholder until a real page/URL exists.
 export const PRIVACY_URL = '#';
 
-// Newsletter endpoint — empty means "no real backend yet": the newsletter
-// form only simulates success locally and makes no network call at all.
-// See src/js/newsletter.js.
-export const NEWSLETTER_ENDPOINT = '';
+// Newsletter endpoint — Pages Function that starts the Resend double
+// opt-in (see functions/api/newsletter/subscribe.js and src/js/newsletter.js).
+export const NEWSLETTER_ENDPOINT = '/api/newsletter/subscribe';

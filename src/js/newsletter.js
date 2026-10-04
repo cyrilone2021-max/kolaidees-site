@@ -1,12 +1,22 @@
-// Newsletter form — local-only simulation while NEWSLETTER_ENDPOINT is
-// empty. This is the ONLY behaviour implemented: no fetch/XHR call exists
-// anywhere in this module outside the (currently unreachable) branch that
-// would use a real endpoint, so no email is ever sent anywhere as things
-// stand. A submission is counted as an anonymous "newsletter_signup" event
-// (see tracking.js) — the address itself is never part of it.
+// Newsletter form — double opt-in through Resend.
+//
+// Submitting posts the address to NEWSLETTER_ENDPOINT (Pages Function
+// functions/api/newsletter/subscribe.js), which emails a confirmation link.
+// The visitor is only added to the list once that link is clicked
+// (functions/api/newsletter/confirm.js), so the success message here says
+// "check your inbox", never "you are subscribed".
+//
+// A successful request is also counted as an anonymous "newsletter_signup"
+// event (see tracking.js) — the address itself is never part of it.
 
-import { NEWSLETTER_ENDPOINT, BRAND_NAME } from '../config/site.js';
+import { NEWSLETTER_ENDPOINT, BRAND_NAME, PRIVACY_URL } from '../config/site.js';
 import { trackNewsletterSignup } from './tracking.js';
+
+const MESSAGES = {
+  sent: 'Presque fini : un email de confirmation vient de vous être envoyé. Cliquez sur le lien qu’il contient pour valider votre inscription.',
+  invalid_email: 'Cette adresse email ne semble pas valide. Vérifiez-la et réessayez.',
+  error: 'L’inscription n’a pas pu aboutir. Réessayez dans quelques minutes.',
+};
 
 export function mountNewsletterForm(root) {
   if (!root) return;
@@ -14,36 +24,51 @@ export function mountNewsletterForm(root) {
   const confirmation = root.querySelector('[data-newsletter-confirmation]');
   if (!form) return;
 
-  if (confirmation) {
-    confirmation.textContent = `Merci — vous êtes inscrit aux nouveautés de ${BRAND_NAME}.`;
-    confirmation.hidden = true;
+  if (confirmation) confirmation.hidden = true;
+
+  // Honeypot: invisible to people (and to screen readers), filled by bots.
+  form.insertAdjacentHTML(
+    'beforeend',
+    '<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">'
+  );
+
+  // Information shown at the point of collection (GDPR).
+  form.insertAdjacentHTML(
+    'afterend',
+    `<p class="newsletter-consent">Vous recevrez un email pour confirmer votre inscription. Votre adresse sert uniquement à l’envoi des nouveautés de ${BRAND_NAME} ; désinscription possible à tout moment. <a href="${PRIVACY_URL}">Politique de confidentialité</a>.</p>`
+  );
+
+  const button = form.querySelector('button[type="submit"]');
+
+  function show(message, isError) {
+    if (!confirmation) return;
+    confirmation.textContent = message;
+    confirmation.classList.toggle('is-error', Boolean(isError));
+    confirmation.hidden = false;
   }
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    trackNewsletterSignup();
+    if (button) button.disabled = true;
 
-    if (!NEWSLETTER_ENDPOINT) {
-      // No real backend configured: simulate success locally, hide the
-      // form, show the confirmation message. No address is sent or
-      // stored anywhere — this does not pretend an email was registered.
-      form.hidden = true;
-      if (confirmation) confirmation.hidden = false;
-      return;
+    try {
+      const res = await fetch(NEWSLETTER_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: form.email.value, website: form.website.value }),
+      });
+      if (res.ok) {
+        form.hidden = true;
+        show(MESSAGES.sent, false);
+        trackNewsletterSignup();
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      show(data.error === 'invalid_email' ? MESSAGES.invalid_email : MESSAGES.error, true);
+    } catch {
+      show(MESSAGES.error, true);
+    } finally {
+      if (button) button.disabled = false;
     }
-
-    // --- Future real integration -----------------------------------
-    // Once NEWSLETTER_ENDPOINT points at a real backend (a Vercel
-    // function, a Supabase Edge Function, or an emailing provider's
-    // double opt-in endpoint), send the address here, e.g.:
-    //
-    //   fetch(NEWSLETTER_ENDPOINT, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ email: form.email.value }),
-    //   }).then(...)
-    //
-    // Not implemented yet — NEWSLETTER_ENDPOINT is empty, so this branch
-    // is unreachable today.
   });
 }

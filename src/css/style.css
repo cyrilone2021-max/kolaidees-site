@@ -138,6 +138,9 @@ a.lang-switch__item:hover { color: var(--accent); }
 }
 .email-input:focus { outline: 3px solid var(--accent2); outline-offset: 1px; }
 .newsletter-confirmation { color: var(--accent); font-weight: 600; }
+.newsletter-confirmation.is-error { color: var(--cream); }
+.newsletter .newsletter-consent { font-size: 12.5px; line-height: 1.5; color: rgba(247, 241, 230, 0.55); }
+.newsletter-consent a { text-decoration: underline; }
 
 /* --- Social badges ------------------------------------------------------ */
 .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
