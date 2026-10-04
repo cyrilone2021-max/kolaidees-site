@@ -1,5 +1,6 @@
 import '../../css/style.css';
 import { renderHeader, renderFooter } from '../layout.js';
+import { initTracking } from '../tracking.js';
 import { AMAZON_BOOK_URL_EN_KINDLE } from '../../config/site.js';
 
 // English-language edition page. The shared header/footer are reused as-is
@@ -15,3 +16,6 @@ renderFooter('en');
 document
   .querySelectorAll('[data-amazon-link="en-kindle"]')
   .forEach((a) => a.setAttribute('href', AMAZON_BOOK_URL_EN_KINDLE));
+
+// Anonymous audience events for 1CLIC Control Tower (see tracking.js).
+initTracking();
