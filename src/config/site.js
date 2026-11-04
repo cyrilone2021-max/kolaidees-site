@@ -6,6 +6,10 @@ export const BRAND_NAME = 'KOLAidees';
 // Real, public Amazon product page — never the KDP link.
 export const AMAZON_BOOK_URL = 'https://www.amazon.fr/dp/B0HJ8JXMN8';
 
+// Guide « Visibilité & monétisation sur les réseaux sociaux » (ebook Kindle,
+// ASIN B0HQD4M6GS, en vente depuis le 4/11/2026).
+export const AMAZON_GUIDE_URL = 'https://www.amazon.fr/dp/B0HQD4M6GS';
+
 // English (US) edition — "Daring Artistic Madness" — already published on
 // KDP. URLs are the standard Amazon /dp/<ASIN> form built from the two
 // official ASINs provided for this edition (Kindle: B0HLVTC57T, Paperback:

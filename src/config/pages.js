@@ -34,6 +34,11 @@ export const PAGES = [
     lang: 'en',
     translationKey: 'oser-tome-1',
   },
+  {
+    name: 'projetVisibiliteEtMonetisation',
+    path: '/projets/visibilite-et-monetisation-reseaux-sociaux/',
+    lang: 'fr',
+  },
   { name: 'aPropos', path: '/a-propos/', lang: 'fr' },
   { name: 'politiqueDeConfidentialite', path: '/politique-de-confidentialite/', lang: 'fr' },
 ];
