@@ -2,9 +2,20 @@
 // so adding a future project means adding one entry here (plus its own
 // dedicated page under /projets/<slug>/), never rewriting the index page.
 
-import { AMAZON_BOOK_URL, AMAZON_GUIDE_URL } from '../config/site.js';
+import { AMAZON_BOOK_URL, AMAZON_GUIDE_URL, AMAZON_OVERTHINKING_FR_URL } from '../config/site.js';
 
 export const projects = [
+  {
+    slug: 'arrete-de-trop-penser',
+    title: 'Arrête de trop penser',
+    tome: '21 jours pour calmer ton mental et lâcher prise',
+    author: 'Cyril Mukendi',
+    status: 'published',
+    summary:
+      "Un chapitre court et un exercice concret par jour pour arrêter de ruminer, ne plus tout prendre à cœur et retrouver des nuits calmes.",
+    href: '/projets/arrete-de-trop-penser/',
+    amazonUrl: AMAZON_OVERTHINKING_FR_URL,
+  },
   {
     slug: 'oser-la-demence-artistique',
     title: 'Oser la démence artistique',
