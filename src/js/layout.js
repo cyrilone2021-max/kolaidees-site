@@ -11,16 +11,25 @@ import {
 } from '../config/site.js';
 import { languageTarget } from '../config/pages.js';
 
-// Header copy by language. 'fr' is the existing default used by every
-// French page (renderHeader(page) with no lang). 'en' is used only by the
-// English edition page: same links (they still lead to the French pages for
-// now), English labels, and a "Get the book" button opening the Amazon.com
-// Kindle page.
-const NAV_LINKS = [
-  { href: '/', label: { fr: 'Accueil', en: 'Home' }, page: 'home' },
-  { href: '/projets/', label: { fr: 'Projets', en: 'Projects' }, page: 'projets' },
-  { href: '/a-propos/', label: { fr: 'À propos', en: 'About' }, page: 'a-propos' },
-];
+// Nav links and header copy by language. 'fr' is the default used by every
+// French page (renderHeader(page) with no lang). 'en' is used by the English
+// pages (/en/, /daring-artistic-madness/, /stop-overthinking/): its links
+// stay inside the English version, and the "Get the book" button opens the
+// Amazon.com Kindle page (each English book page overrides it with its own).
+const NAV_LINKS = {
+  fr: [
+    { href: '/', label: 'Accueil', page: 'home' },
+    { href: '/projets/', label: 'Projets', page: 'projets' },
+    { href: '/a-propos/', label: 'À propos', page: 'a-propos' },
+  ],
+  en: [
+    { href: '/en/', label: 'Home', page: 'home-en' },
+    { href: '/en/#books', label: 'Books', page: 'books-en' },
+  ],
+};
+
+// Where the brand logo leads, by language.
+const HOME_PATH = { fr: '/', en: '/en/' };
 
 const HEADER_COPY = {
   fr: {
@@ -54,7 +63,7 @@ function langSwitchHtml(lang, label) {
 
 function navLinkHtml(link, currentPage, lang, extraClass = '') {
   const current = link.page === currentPage ? ' aria-current="page"' : '';
-  return `<a class="nav-link ${extraClass}" href="${link.href}"${current}>${link.label[lang] || link.label.fr}</a>`;
+  return `<a class="nav-link ${extraClass}" href="${link.href}"${current}>${link.label}</a>`;
 }
 
 export function renderHeader(currentPage, lang = 'fr') {
@@ -62,7 +71,7 @@ export function renderHeader(currentPage, lang = 'fr') {
   if (!header) return;
 
   const t = HEADER_COPY[lang] || HEADER_COPY.fr;
-  const links = NAV_LINKS.map((l) => navLinkHtml(l, currentPage, lang)).join('');
+  const links = (NAV_LINKS[lang] || NAV_LINKS.fr).map((l) => navLinkHtml(l, currentPage, lang)).join('');
   const langSwitch = langSwitchHtml(lang, t.langSwitch);
   // Purchase button: Amazon.fr on French pages (unchanged), Amazon.com
   // Kindle on the English page.
@@ -71,7 +80,7 @@ export function renderHeader(currentPage, lang = 'fr') {
 
   header.innerHTML = `
     <div class="site-header__row">
-      <a class="brand" href="/">${BRAND_NAME}</a>
+      <a class="brand" href="${HOME_PATH[lang] || HOME_PATH.fr}">${BRAND_NAME}</a>
       <nav class="desktop-nav" aria-label="${t.mainNav}">
         ${links}
         ${langSwitch}
@@ -105,7 +114,7 @@ export function renderHeader(currentPage, lang = 'fr') {
 
 // Footer copy by language. 'fr' is the existing, unchanged default used by
 // every page already calling renderFooter() with no argument. 'en' is used
-// only by the English edition page (renderFooter('en')).
+// by the English pages (renderFooter('en')).
 const FOOTER_COPY = {
   fr: {
     tagline: 'Oser la démence artistique',
@@ -115,7 +124,7 @@ const FOOTER_COPY = {
     privacy: 'Politique de confidentialité',
   },
   en: {
-    tagline: 'Daring Artistic Madness',
+    tagline: 'Books, ideas, creation',
     disclaimer:
       'This content is presented for creative and editorial purposes; it does not replace professional medical or psychological advice.',
     rights: 'All rights reserved.',
