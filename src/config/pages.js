@@ -39,6 +39,18 @@ export const PAGES = [
     path: '/projets/visibilite-et-monetisation-reseaux-sociaux/',
     lang: 'fr',
   },
+  {
+    name: 'projetArreteDeTropPenser',
+    path: '/projets/arrete-de-trop-penser/',
+    lang: 'fr',
+    translationKey: 'overthinking',
+  },
+  {
+    name: 'stopOverthinking',
+    path: '/stop-overthinking/',
+    lang: 'en',
+    translationKey: 'overthinking',
+  },
   { name: 'aPropos', path: '/a-propos/', lang: 'fr' },
   { name: 'politiqueDeConfidentialite', path: '/politique-de-confidentialite/', lang: 'fr' },
 ];

@@ -10,6 +10,12 @@ export const AMAZON_BOOK_URL = 'https://www.amazon.fr/dp/B0HJ8JXMN8';
 // ASIN B0HQD4M6GS, en vente depuis le 4/11/2026).
 export const AMAZON_GUIDE_URL = 'https://www.amazon.fr/dp/B0HQD4M6GS';
 
+// « Arrête de trop penser » (ebook ASIN B0HR3V2LPD, broché B0HR53CZC1) and
+// its US edition « Stop Overthinking » (Kindle B0HR2T6VWR, paperback
+// B0HR44Z5RC), all live on KDP since 10/11/2026.
+export const AMAZON_OVERTHINKING_FR_URL = 'https://www.amazon.fr/dp/B0HR3V2LPD';
+export const AMAZON_OVERTHINKING_US_URL = 'https://www.amazon.com/dp/B0HR2T6VWR';
+
 // English (US) edition — "Daring Artistic Madness" — already published on
 // KDP. URLs are the standard Amazon /dp/<ASIN> form built from the two
 // official ASINs provided for this edition (Kindle: B0HLVTC57T, Paperback:
