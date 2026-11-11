@@ -25,6 +25,7 @@ const NAV_LINKS = {
   en: [
     { href: '/en/', label: 'Home', page: 'home-en' },
     { href: '/en/#books', label: 'Books', page: 'books-en' },
+    { href: '/en/about/', label: 'About', page: 'about-en' },
   ],
 };
 
