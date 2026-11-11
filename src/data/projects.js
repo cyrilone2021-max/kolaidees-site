@@ -14,6 +14,7 @@ export const projects = [
     summary:
       "Un chapitre court et un exercice concret par jour pour arrêter de ruminer, ne plus tout prendre à cœur et retrouver des nuits calmes.",
     href: '/projets/arrete-de-trop-penser/',
+    cover: '/covers/arrete-de-trop-penser.jpg',
     amazonUrl: AMAZON_OVERTHINKING_FR_URL,
   },
   {
@@ -25,6 +26,7 @@ export const projects = [
     summary:
       "Un manifeste incisif, drôle et pragmatique pour déconstruire la censure intérieure et créer sans demander la permission.",
     href: '/projets/oser-la-demence-artistique/',
+    cover: '/covers/oser-la-demence-artistique.jpg',
     amazonUrl: AMAZON_BOOK_URL,
   },
   {
@@ -36,6 +38,7 @@ export const projects = [
     summary:
       "De 0 à 10 000 abonnés : une méthode claire, palier par palier, pour devenir visible et commencer à gagner de l'argent sur TikTok, Instagram, Facebook et YouTube Shorts.",
     href: '/projets/visibilite-et-monetisation-reseaux-sociaux/',
+    cover: '/covers/guide-visibilite-monetisation.jpg',
     amazonUrl: AMAZON_GUIDE_URL,
   },
 ];
