@@ -52,7 +52,8 @@ export const PAGES = [
     lang: 'en',
     translationKey: 'overthinking',
   },
-  { name: 'aPropos', path: '/a-propos/', lang: 'fr' },
+  { name: 'aPropos', path: '/a-propos/', lang: 'fr', translationKey: 'about' },
+  { name: 'aboutEn', path: '/en/about/', lang: 'en', translationKey: 'about' },
   { name: 'politiqueDeConfidentialite', path: '/politique-de-confidentialite/', lang: 'fr' },
 ];
 
