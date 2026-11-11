@@ -16,11 +16,12 @@ export const LOCALES = {
 // Where the language switch goes when the current page has no translation.
 export const LANG_FALLBACK = {
   fr: '/',
-  en: '/daring-artistic-madness/',
+  en: '/en/',
 };
 
 export const PAGES = [
-  { name: 'main', path: '/', lang: 'fr' },
+  { name: 'main', path: '/', lang: 'fr', translationKey: 'home' },
+  { name: 'homeEn', path: '/en/', lang: 'en', translationKey: 'home' },
   { name: 'projets', path: '/projets/', lang: 'fr' },
   {
     name: 'projetOserLaDemenceArtistique',
