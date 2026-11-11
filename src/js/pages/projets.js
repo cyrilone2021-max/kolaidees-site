@@ -12,6 +12,7 @@ if (grid) {
     .map(
       (p) => `
       <a class="card" href="${p.href}" style="padding: 28px; display: flex; flex-direction: column; gap: 10px; border-radius: 14px;">
+        ${p.cover ? `<img src="${p.cover}" width="96" height="154" alt="" style="border-radius: 6px; box-shadow: 0 10px 24px rgba(22,19,15,0.2); margin-bottom: 6px;" />` : ''}
         <span class="kicker">${p.status === 'published' ? 'Disponible' : 'À venir'}</span>
         <h3 style="font-size: 22px; font-weight: 900;">${p.title}</h3>
         <span style="font-size: 14px; font-style: italic; color: var(--accent);">${p.tome}</span>
