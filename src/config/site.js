@@ -14,15 +14,15 @@ export const AMAZON_GUIDE_URL = 'https://www.amazon.fr/dp/B0HQD4M6GS';
 // its US edition « Stop Overthinking » (Kindle B0HR2T6VWR, paperback
 // B0HR44Z5RC), all live on KDP since 10/11/2026.
 export const AMAZON_OVERTHINKING_FR_URL = 'https://www.amazon.fr/dp/B0HR3V2LPD';
-export const AMAZON_OVERTHINKING_US_URL = 'https://www.amazon.com/dp/B0HR2T6VWR';
+export const AMAZON_OVERTHINKING_US_URL = 'https://www.amazon.com/dp/B0HR2T6VWR?tag=cyril0e3-20';
 
 // English (US) edition — "Daring Artistic Madness" — already published on
 // KDP. URLs are the standard Amazon /dp/<ASIN> form built from the two
 // official ASINs provided for this edition (Kindle: B0HLVTC57T, Paperback:
 // B0HLWL8P9V), the same construction already used for AMAZON_BOOK_URL
 // above — never guessed.
-export const AMAZON_BOOK_URL_EN_KINDLE = 'https://www.amazon.com/dp/B0HLVTC57T';
-export const AMAZON_BOOK_URL_EN_PAPERBACK = 'https://www.amazon.com/dp/B0HLWL8P9V';
+export const AMAZON_BOOK_URL_EN_KINDLE = 'https://www.amazon.com/dp/B0HLVTC57T?tag=cyril0e3-20';
+export const AMAZON_BOOK_URL_EN_PAPERBACK = 'https://www.amazon.com/dp/B0HLWL8P9V?tag=cyril0e3-20';
 
 export const SOCIAL = {
   tiktok: 'https://www.tiktok.com/@kola_idees/video/7690043628156194070?lang=fr',
