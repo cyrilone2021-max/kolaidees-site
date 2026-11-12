@@ -130,6 +130,7 @@ const FOOTER_COPY = {
       'This content is presented for creative and editorial purposes; it does not replace professional medical or psychological advice.',
     rights: 'All rights reserved.',
     privacy: 'Privacy Policy',
+    affiliate: 'As an Amazon Associate, KOLAidees earns from qualifying purchases.',
   },
 };
 
@@ -155,6 +156,7 @@ export function renderFooter(lang = 'fr') {
         </div>
       </div>
       <p class="disclaimer">${t.disclaimer}</p>
+      ${t.affiliate ? `<p class="disclaimer">${t.affiliate}</p>` : ''}
       <div class="site-footer__legal">
         <span>&copy; ${year} ${BRAND_NAME}. ${t.rights}</span>
         <a href="${PRIVACY_URL}" style="text-decoration: underline;">${t.privacy}</a>
