@@ -2,7 +2,7 @@
 // so adding a future project means adding one entry here (plus its own
 // dedicated page under /projets/<slug>/), never rewriting the index page.
 
-import { AMAZON_BOOK_URL, AMAZON_GUIDE_URL, AMAZON_OVERTHINKING_FR_URL } from '../config/site.js';
+import { AMAZON_BOOK_URL, AMAZON_GUIDE_URL, AMAZON_OVERTHINKING_FR_URL, ONDINE } from '../config/site.js';
 
 export const projects = [
   {
@@ -40,5 +40,19 @@ export const projects = [
     href: '/projets/visibilite-et-monetisation-reseaux-sociaux/',
     cover: '/covers/guide-visibilite-monetisation.jpg',
     amazonUrl: AMAZON_GUIDE_URL,
+  },
+  {
+    slug: 'l-ete-de-l-ondine',
+    title: "L'Été de L'Ondine",
+    tome: "Les Saisons de l'île, tome 1. Une romance de Léa Marlowe",
+    author: 'Léa Marlowe',
+    status: 'published',
+    label: 'Plume invitée',
+    summary:
+      "Sur une île bretonne, Maëlle tient l'auberge familiale. Un été, Julien, charpentier de marine, arrive au chantier du port.",
+    href: ONDINE.frKindle,
+    external: true,
+    cover: '/covers/l-ete-de-l-ondine.jpg',
+    amazonUrl: ONDINE.frKindle,
   },
 ];

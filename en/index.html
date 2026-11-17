@@ -4,29 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KOLAidees — Books, ideas, creation</title>
-  <meta name="description" content="KOLAidees publishes books that help ideas take shape. In English: Daring Artistic Madness, a manifesto for creative freedom, and Stop Overthinking, a 21-day plan to quiet your mind." />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="KOLA Idées publishes books to dare and to breathe: Stop Overthinking, Daring Artistic Madness, and The Summer of the Ondine by Léa Marlowe. Kindle and paperback on Amazon." />
+  <link rel="icon" type="image/png" href="/img/logo-kola-64.png" />
+  <link rel="apple-touch-icon" href="/img/logo-kola-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho+B1:wght@800&family=Noto+Sans+Egyptian+Hieroglyphs&family=Cinzel:wght@700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" />
+  <link rel="preload" as="image" href="/img/cave.jpg" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="KOLAidees" />
   <meta property="og:title" content="KOLAidees — Books, ideas, creation" />
-  <meta property="og:description" content="Books that help ideas take shape: Daring Artistic Madness and Stop Overthinking, available on Amazon." />
+  <meta property="og:description" content="Books to dare, and to breathe. Manifestos, practical guides and romance, on Kindle and in paperback." />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="KOLAidees — Books, ideas, creation" />
-  <meta name="twitter:description" content="Daring Artistic Madness and Stop Overthinking, the English-language books from KOLAidees." />
+  <meta name="twitter:description" content="Books to dare, and to breathe. Manifestos, practical guides and romance, on Kindle and in paperback." />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "KOLAidees",
-    "description": "Editorial and creative imprint dedicated to knowledge, ideas and creation.",
+    "description": "Independent publisher: books to help you grow, from one culture to another, from one language to another.",
     "sameAs": [
       "https://www.tiktok.com/@kola_idees",
       "https://www.instagram.com/kola.idees/",
-      "https://www.facebook.com/profile.php?id=61592982996384"
+      "https://www.facebook.com/profile.php?id=61592982996384",
+      "https://www.amazon.com/stores/author/B0HJP5W3KN",
+      "https://www.goodreads.com/author/show/72300056.Cyril_Mukendi"
     ]
   }
   </script>
@@ -35,53 +39,130 @@
   <header id="site-header" class="site-header"></header>
 
   <main>
-    <!-- HERO -->
-    <section class="container" style="padding: 72px 24px 96px;">
-      <div class="hero-row" style="display: flex; align-items: center; gap: 64px;">
-        <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 22px;">
-          <span class="kicker">KOLAidees</span>
-          <h1 style="font-size: clamp(34px, 5vw, 56px); font-weight: 900;">Books, ideas, creation.</h1>
-          <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.5; margin: 0; max-width: 520px; opacity: 0.85;">KOLAidees publishes manifestos and practical books that give real shape to what you finally dare to create, and quiet the noise that stops you.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px;">
+    <!-- HERO: cave wall -->
+    <section class="h-cave pad">
+      <div class="wrap">
+        <div>
+          <h1>Books to <span>dare</span>, and to breathe.</h1>
+          <p>Manifestos, practical guides and romance, on Kindle and in paperback.</p>
+          <div class="cta-row">
             <a class="btn btn-primary" href="#books">See the books</a>
-            <a class="btn btn-ghost" href="/" hreflang="fr" lang="fr">Site en français →</a>
+            <a class="btn btn-ghost" href="/" hreflang="fr" lang="fr">Livres en français</a>
           </div>
         </div>
-        <div class="hero-visual" style="flex: 0 0 280px; display: flex; justify-content: center; gap: 0;">
-          <img src="/covers/stop-overthinking.jpg" width="200" height="320" alt="Cover of Stop Overthinking" style="width: 200px; height: auto; border-radius: 10px; box-shadow: 0 28px 60px rgba(22,19,15,0.28); transform: rotate(-4deg);" />
+        <div class="h-stack">
+          <img src="/covers/daring-artistic-madness.jpg" width="190" height="304" alt="Cover of Daring Artistic Madness" />
+          <img src="/covers/stop-overthinking.jpg" width="190" height="304" alt="Cover of Stop Overthinking" />
+        </div>
+        <div class="h-vert" aria-hidden="true">創造<small>CREATION</small></div>
+      </div>
+    </section>
+
+    <!-- BOOKS: hieroglyph wall -->
+    <section class="h-wall pad" id="books" style="scroll-margin-top: 70px;">
+      <div class="wrap">
+        <div class="head">
+          <span class="h-scribe" aria-hidden="true">𓏞</span>
+          <div>
+            <h2 class="h-title">The books</h2>
+            <p>The scribe's sign, a palette and a reed pen: five thousand years ago, people already wrote to pass things on.</p>
+          </div>
+        </div>
+        <div class="shelf" style="grid-template-columns: repeat(2, minmax(0, 220px)); gap: 40px;">
+          <article class="shelf-book">
+            <a class="cover" href="/stop-overthinking/"><img src="/covers/stop-overthinking.jpg" width="200" height="320" alt="Cover of Stop Overthinking" loading="lazy" /></a>
+            <span class="tag">New: 21 days</span>
+            <h3><a href="/stop-overthinking/">Stop Overthinking</a></h3>
+            <div class="buy">
+              <a class="btn btn-primary btn-small" href="https://www.amazon.com/dp/B0HR2T6VWR?tag=cyril0e3-20" target="_blank" rel="noopener">Kindle $4.99</a>
+              <a class="btn btn-ghost btn-small" href="https://www.amazon.com/dp/B0HR44Z5RC?tag=cyril0e3-20" target="_blank" rel="noopener">Paperback $9.99</a>
+            </div>
+          </article>
+          <article class="shelf-book">
+            <a class="cover" href="/daring-artistic-madness/"><img src="/covers/daring-artistic-madness.jpg" width="200" height="320" alt="Cover of Daring Artistic Madness" loading="lazy" /></a>
+            <span class="tag">Manifesto</span>
+            <h3><a href="/daring-artistic-madness/">Daring Artistic Madness</a></h3>
+            <div class="buy">
+              <a class="btn btn-primary btn-small" href="https://www.amazon.com/dp/B0HLVTC57T?tag=cyril0e3-20" target="_blank" rel="noopener">Kindle $4.99</a>
+              <a class="btn btn-ghost btn-small" href="https://www.amazon.com/dp/B0HLWL8P9V?tag=cyril0e3-20" target="_blank" rel="noopener">Paperback $16.99</a>
+            </div>
+          </article>
+        </div>
+        <p class="h-more">All of Cyril Mukendi's books on his <a href="https://www.amazon.com/stores/author/B0HJP5W3KN?tag=cyril0e3-20" target="_blank" rel="noopener">Amazon author page</a>. Also in French: <a href="/projets/" hreflang="fr" lang="fr">the French books</a>, including a guide to growing an audience on social media.</p>
+      </div>
+    </section>
+
+    <!-- FEATHER: the new book -->
+    <section class="h-room pad">
+      <div class="wrap">
+        <img class="h-feather" src="/img/feather.jpg" width="350" height="625" alt="A feather with two turquoise beads" loading="lazy" />
+        <img class="cover-big" src="/covers/stop-overthinking.jpg" width="260" height="416" alt="Cover of Stop Overthinking" loading="lazy" />
+        <div>
+          <div class="h-kanji">考 <span>to think</span></div>
+          <h2 class="h-title">Light as a feather, in 21&nbsp;days.</h2>
+          <p>One short chapter and one concrete exercise a day to quiet your mind, stop taking everything personally, and let go.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://www.amazon.com/dp/B0HR2T6VWR?tag=cyril0e3-20" target="_blank" rel="noopener">Get it on Amazon</a>
+            <a class="btn btn-ghost" href="/stop-overthinking/">About the book</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- BOOKS -->
-    <section id="books" class="container" style="padding: 0 24px 96px; scroll-margin-top: 90px;">
-      <span class="kicker" style="display: block; margin-bottom: 18px;">Books in English</span>
-
-      <div class="card" style="padding: 36px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
-        <div style="display: flex; gap: 22px; align-items: center; flex-wrap: wrap;">
-          <img src="/covers/stop-overthinking.jpg" width="84" height="134" alt="" style="border-radius: 6px; box-shadow: 0 10px 24px rgba(22,19,15,0.2);" />
-          <div style="flex: 1 1 260px;">
-            <span class="kicker">New — 21 days</span>
-            <h2 style="font-size: 24px; font-weight: 900; margin-top: 8px;">Stop Overthinking</h2>
-            <p style="margin: 8px 0 0; font-size: 15px; opacity: 0.8; max-width: 520px;">One short chapter and one concrete exercise a day to quiet your mind, stop taking everything personally, and let go. Kindle $4.99 · Paperback $9.99.</p>
-          </div>
+    <!-- ABOUT: the mask -->
+    <section class="h-about pad" id="kola">
+      <div class="wrap">
+        <div class="txt">
+          <h2 class="h-title">Ideas from everywhere.</h2>
+          <p>KOLA is the kola nut, shared in West Africa to welcome guests and open a conversation. KOLA Idées publishes books in the same spirit: ideas that travel from one culture to another, from one language to another, to help us grow and move past our limits.</p>
+          <p class="h-lingala"><b>KOLA</b> also means "to grow" in Lingala and Tshiluba (DR Congo).</p>
         </div>
-        <a class="btn btn-primary" href="/stop-overthinking/">Discover the book</a>
+        <img class="h-mask" src="/img/mask.jpg" width="405" height="540" alt="Carved wooden African mask" loading="lazy" />
       </div>
+    </section>
 
-      <div class="card" style="padding: 36px; margin-top: 20px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
-        <div style="display: flex; gap: 22px; align-items: center; flex-wrap: wrap;">
-          <img src="/covers/daring-artistic-madness.jpg" width="84" height="134" alt="" style="border-radius: 6px; box-shadow: 0 10px 24px rgba(22,19,15,0.2);" />
-          <div style="flex: 1 1 260px;">
-          <span class="kicker">Manifesto — Book One</span>
-          <h2 style="font-size: 24px; font-weight: 900; margin-top: 8px;">Daring Artistic Madness</h2>
-          <p style="margin: 8px 0 0; font-size: 15px; opacity: 0.8; max-width: 520px;">A bold, sharp, no-permission-needed manifesto against creative self-censorship, perfectionism and the fear of judgment. Kindle $4.99 · Paperback $16.99.</p>
+    <!-- PEN NAMES: ancient Greece -->
+    <div class="meander" aria-hidden="true"></div>
+    <section class="h-greece pad" id="pen-names" style="scroll-margin-top: 70px;">
+      <div class="wrap">
+        <div class="top">
+          <div>
+            <h2>Guest authors</h2>
+            <p class="intro">Pen names and other authors published by KOLA Idées. We start with <em>an ondine</em>, a water nymph, like the ones the Greeks painted on their vases.</p>
           </div>
+          <img class="h-amphora" src="/img/amphora.jpg" width="210" height="280" alt="A nymph walking on the waves, Greek vase painting" loading="lazy" />
         </div>
-        <a class="btn btn-primary" href="/daring-artistic-madness/">Read the manifesto</a>
+        <article class="pen">
+          <div class="pair">
+            <img src="/covers/the-summer-of-the-ondine.jpg" width="150" height="240" alt="Cover of The Summer of the Ondine, by Léa Marlowe" loading="lazy" />
+            <img src="/covers/l-ete-de-l-ondine.jpg" width="150" height="240" alt="Cover of L'Été de L'Ondine, the French edition" loading="lazy" />
+          </div>
+          <div>
+            <h3><a href="https://www.amazon.com/stores/author/B0HRTT928W?tag=cyril0e3-20" target="_blank" rel="noopener">Léa Marlowe</a></h3>
+            <p class="genre">Contemporary romance · The Island Seasons, Book 1</p>
+            <p>On a Breton island, Maëlle runs the family inn. One summer, Julien, a boat carpenter, arrives at the harbour boatyard. A love story inspired by a true story.</p>
+            <div class="rows">
+              <div class="row"><span>The Summer of the Ondine (EN)</span><a class="btn btn-gold btn-small" href="https://www.amazon.com/dp/B0HRSJWXQX?tag=cyril0e3-20" target="_blank" rel="noopener">Kindle $3.99</a><a class="btn btn-ghost btn-small" href="https://www.amazon.com/dp/B0HRSKKPVM?tag=cyril0e3-20" target="_blank" rel="noopener">Paperback $9.99</a></div>
+              <div class="row" lang="fr"><span>L'Été de L'Ondine (FR)</span><a class="btn btn-gold btn-small" href="https://www.amazon.fr/dp/B0HRS2LJWC" target="_blank" rel="noopener">Kindle 3,99&nbsp;€</a><a class="btn btn-ghost btn-small" href="https://www.amazon.fr/dp/B0HRSRG412" target="_blank" rel="noopener">Broché 10,54&nbsp;€</a></div>
+            </div>
+          </div>
+        </article>
+        <p class="next">More authors will join the house soon.</p>
       </div>
+    </section>
+    <div class="meander" aria-hidden="true"></div>
 
-      <p style="margin: 28px 0 0; font-size: 15px; opacity: 0.75;">Also available in French: <a href="/projets/" hreflang="fr" lang="fr" style="text-decoration: underline;">all KOLAidees books in French</a>, including a practical guide to growing an audience on social media.</p>
+    <!-- REVIEWS -->
+    <section class="h-reviews pad" id="reviews" style="scroll-margin-top: 70px;">
+      <div class="wrap">
+        <h2 class="h-title">Read one of our books?</h2>
+        <p>Your review, even two lines, helps other readers find the book. Leave it on Amazon or on Goodreads.</p>
+        <div class="reviews-grid">
+          <div class="review-row"><img src="/covers/stop-overthinking.jpg" width="56" height="90" alt="" loading="lazy" /><div><strong>Stop Overthinking</strong><div class="buy"><a class="btn btn-primary btn-small" href="https://www.amazon.com/review/create-review?asin=B0HR2T6VWR" target="_blank" rel="noopener">Amazon review</a><a class="btn btn-ghost btn-small" href="https://www.goodreads.com/book/show/264293414-stop-overthinking" target="_blank" rel="noopener">Goodreads</a></div></div></div>
+          <div class="review-row"><img src="/covers/daring-artistic-madness.jpg" width="56" height="90" alt="" loading="lazy" /><div><strong>Daring Artistic Madness</strong><div class="buy"><a class="btn btn-primary btn-small" href="https://www.amazon.com/review/create-review?asin=B0HLVTC57T" target="_blank" rel="noopener">Amazon review</a><a class="btn btn-ghost btn-small" href="https://www.goodreads.com/book/show/260220948-daring-artistic-madness" target="_blank" rel="noopener">Goodreads</a></div></div></div>
+          <div class="review-row"><img src="/covers/the-summer-of-the-ondine.jpg" width="56" height="90" alt="" loading="lazy" /><div><strong>The Summer of the Ondine</strong><div class="buy"><a class="btn btn-primary btn-small" href="https://www.amazon.com/review/create-review?asin=B0HRSJWXQX" target="_blank" rel="noopener">Amazon review</a></div></div></div>
+        </div>
+      </div>
     </section>
   </main>
 

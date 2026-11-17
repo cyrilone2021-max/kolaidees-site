@@ -5,3 +5,6 @@ dist/
 .env.*.local
 *.log
 .DS_Store
+
+# Documents administratifs : jamais dans git
+Documents/

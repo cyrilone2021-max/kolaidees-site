@@ -5,7 +5,7 @@ import { AMAZON_OVERTHINKING_US_URL } from '../../config/site.js';
 
 // English-language page for "Stop Overthinking" (same pattern as
 // daring-artistic-madness.js: no French newsletter/social blocks here).
-renderHeader('stop-overthinking', 'en');
+renderHeader('stop-overthinking', 'en', { label: 'Get the book', url: AMAZON_OVERTHINKING_US_URL });
 renderFooter('en');
 
 // The shared EN header's "Get the book" button points to Daring Artistic
