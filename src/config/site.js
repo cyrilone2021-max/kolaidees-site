@@ -5,6 +5,8 @@ export const BRAND_NAME = 'KOLAidees';
 
 // Real, public Amazon product page — never the KDP link.
 export const AMAZON_BOOK_URL = 'https://www.amazon.fr/dp/B0HJ8JXMN8';
+// Its paperback (16,99 € on amazon.fr).
+export const AMAZON_BOOK_PAPERBACK_URL = 'https://www.amazon.fr/dp/B0HJ7PGWLV';
 
 // Guide « Visibilité & monétisation sur les réseaux sociaux » (ebook Kindle,
 // ASIN B0HQD4M6GS, en vente depuis le 4/11/2026).
@@ -24,12 +26,36 @@ export const AMAZON_OVERTHINKING_US_URL = 'https://www.amazon.com/dp/B0HR2T6VWR?
 export const AMAZON_BOOK_URL_EN_KINDLE = 'https://www.amazon.com/dp/B0HLVTC57T?tag=cyril0e3-20';
 export const AMAZON_BOOK_URL_EN_PAPERBACK = 'https://www.amazon.com/dp/B0HLWL8P9V?tag=cyril0e3-20';
 
+// Profile pages of the KOLA accounts (checked 17/11/2026). Goodreads = the
+// author page, not a personal reading list.
 export const SOCIAL = {
-  tiktok: 'https://www.tiktok.com/@kola_idees/video/7690043628156194070?lang=fr',
+  tiktok: 'https://www.tiktok.com/@kola_idees',
   instagram: 'https://www.instagram.com/kola.idees/',
-  facebook: 'https://www.facebook.com/profile.php?id=61592982996384&sk=directory_links',
-  goodreads: 'https://www.goodreads.com/review/list/204465609?ref=nav_mybooks',
+  facebook: 'https://www.facebook.com/profile.php?id=61592982996384',
+  goodreads: 'https://www.goodreads.com/author/show/72300056.Cyril_Mukendi',
 };
+
+// Amazon Author pages (public "stores/author" pages, checked 17/11/2026).
+export const AMAZON_AUTHOR = {
+  fr: 'https://www.amazon.fr/stores/author/B0HJP5W3KN',
+  en: 'https://www.amazon.com/stores/author/B0HJP5W3KN?tag=cyril0e3-20',
+};
+export const LEA_MARLOWE_AUTHOR = {
+  fr: 'https://www.amazon.fr/stores/author/B0HRTT928W',
+  en: 'https://www.amazon.com/stores/author/B0HRTT928W?tag=cyril0e3-20',
+};
+
+// Romance under the pen name Léa Marlowe (« Plumes invitées »), live 15/11/2026.
+export const ONDINE = {
+  frKindle: 'https://www.amazon.fr/dp/B0HRS2LJWC',
+  frPaperback: 'https://www.amazon.fr/dp/B0HRSRG412',
+  enKindle: 'https://www.amazon.com/dp/B0HRSJWXQX?tag=cyril0e3-20',
+  enPaperback: 'https://www.amazon.com/dp/B0HRSKKPVM?tag=cyril0e3-20',
+};
+
+// Logo with Kuba patterns (the social profile picture). Empty until the
+// original file is added to public/img/: the header then shows the wordmark only.
+export const LOGO_URL = '';
 
 // --- Not-yet-real values -------------------------------------------------
 // These are intentionally empty: the site is not deployed, so there is no

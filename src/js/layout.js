@@ -4,56 +4,57 @@
 
 import {
   BRAND_NAME,
-  AMAZON_BOOK_URL,
-  AMAZON_BOOK_URL_EN_KINDLE,
   SOCIAL,
   PRIVACY_URL,
+  AMAZON_AUTHOR,
+  LEA_MARLOWE_AUTHOR,
+  LOGO_URL,
 } from '../config/site.js';
 import { languageTarget } from '../config/pages.js';
 
-// Nav links and header copy by language. 'fr' is the default used by every
-// French page (renderHeader(page) with no lang). 'en' is used by the English
-// pages (/en/, /daring-artistic-madness/, /stop-overthinking/): its links
-// stay inside the English version, and the "Get the book" button opens the
-// Amazon.com Kindle page (each English book page overrides it with its own).
+// Nav links by language. The English links stay inside the English version.
 const NAV_LINKS = {
   fr: [
-    { href: '/', label: 'Accueil', page: 'home' },
-    { href: '/projets/', label: 'Projets', page: 'projets' },
+    { href: '/projets/', label: 'Livres', page: 'projets' },
+    { href: '/#plumes', label: 'Plumes invitées', page: 'plumes' },
+    { href: '/#avis', label: 'Avis', page: 'avis' },
     { href: '/a-propos/', label: 'À propos', page: 'a-propos' },
   ],
   en: [
-    { href: '/en/', label: 'Home', page: 'home-en' },
     { href: '/en/#books', label: 'Books', page: 'books-en' },
+    { href: '/en/#pen-names', label: 'Pen names', page: 'pen-names-en' },
+    { href: '/en/#reviews', label: 'Reviews', page: 'reviews-en' },
     { href: '/en/about/', label: 'About', page: 'about-en' },
   ],
 };
 
-// Where the brand logo leads, by language.
 const HOME_PATH = { fr: '/', en: '/en/' };
 
+// The header button opens the Amazon Author page by default; a book page
+// passes its own Amazon link instead (renderHeader(page, lang, buy)).
 const HEADER_COPY = {
   fr: {
     mainNav: 'Navigation principale',
     mobileNav: 'Navigation mobile',
     openMenu: 'Ouvrir le menu',
     langSwitch: 'Langue',
-    buyLabel: 'Découvrir le livre',
-    buyUrl: AMAZON_BOOK_URL,
+    buy: { label: 'Page auteur Amazon', url: AMAZON_AUTHOR.fr },
   },
   en: {
     mainNav: 'Main navigation',
     mobileNav: 'Mobile navigation',
     openMenu: 'Open menu',
     langSwitch: 'Language',
-    buyLabel: 'Get the book',
-    buyUrl: AMAZON_BOOK_URL_EN_KINDLE,
+    buy: { label: 'Amazon author page', url: AMAZON_AUTHOR.en },
   },
 };
 
-// FR/EN switch: targets come from the page registry (src/config/pages.js) —
-// the translated version of the current page, or the language fallback page
-// when the current page has no translation.
+function brandHtml(lang) {
+  const logo = LOGO_URL ? `<img src="${LOGO_URL}" alt="" width="44" height="44" />` : '';
+  return `<a class="brand" href="${HOME_PATH[lang] || HOME_PATH.fr}">${logo}<span>KOLA idées</span></a>`;
+}
+
+// FR/EN switch: targets come from the page registry (src/config/pages.js).
 function langSwitchHtml(lang, label) {
   const item = (code) =>
     code === lang
@@ -62,37 +63,36 @@ function langSwitchHtml(lang, label) {
   return `<div class="lang-switch" role="group" aria-label="${label}">${item('fr')}<span class="lang-switch__sep" aria-hidden="true">|</span>${item('en')}</div>`;
 }
 
-function navLinkHtml(link, currentPage, lang, extraClass = '') {
+function navLinkHtml(link, currentPage) {
   const current = link.page === currentPage ? ' aria-current="page"' : '';
-  return `<a class="nav-link ${extraClass}" href="${link.href}"${current}>${link.label}</a>`;
+  return `<a class="nav-link" href="${link.href}"${current}>${link.label}</a>`;
 }
 
-export function renderHeader(currentPage, lang = 'fr') {
+export function renderHeader(currentPage, lang = 'fr', buy) {
   const header = document.getElementById('site-header');
   if (!header) return;
 
   const t = HEADER_COPY[lang] || HEADER_COPY.fr;
-  const links = (NAV_LINKS[lang] || NAV_LINKS.fr).map((l) => navLinkHtml(l, currentPage, lang)).join('');
+  const b = buy || t.buy;
+  const links = (NAV_LINKS[lang] || NAV_LINKS.fr).map((l) => navLinkHtml(l, currentPage)).join('');
   const langSwitch = langSwitchHtml(lang, t.langSwitch);
-  // Purchase button: Amazon.fr on French pages (unchanged), Amazon.com
-  // Kindle on the English page.
-  const buyDesktop = `<a class="btn btn-primary" href="${t.buyUrl}" target="_blank" rel="noopener">${t.buyLabel}</a>`;
-  const buyMobile = `<a class="btn btn-primary" href="${t.buyUrl}" target="_blank" rel="noopener" style="margin-top: 8px; width: fit-content;">${t.buyLabel}</a>`;
+  const buyBtn = (extra = '') =>
+    `<a class="btn btn-primary btn-small" href="${b.url}" target="_blank" rel="noopener"${extra}>${b.label}</a>`;
 
   header.innerHTML = `
     <div class="site-header__row">
-      <a class="brand" href="${HOME_PATH[lang] || HOME_PATH.fr}">${BRAND_NAME}</a>
+      ${brandHtml(lang)}
       <nav class="desktop-nav" aria-label="${t.mainNav}">
         ${links}
         ${langSwitch}
-        ${buyDesktop}
+        ${buyBtn()}
       </nav>
       <button class="hamburger" id="nav-toggle" aria-label="${t.openMenu}" aria-expanded="false" aria-controls="mobile-nav">☰</button>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="${t.mobileNav}">
       ${links}
       ${langSwitch}
-      ${buyMobile}
+      ${buyBtn(' style="margin-top: 10px; width: fit-content;"')}
     </nav>
   `;
 
@@ -113,19 +113,34 @@ export function renderHeader(currentPage, lang = 'fr') {
   );
 }
 
-// Footer copy by language. 'fr' is the existing, unchanged default used by
-// every page already calling renderFooter() with no argument. 'en' is used
-// by the English pages (renderFooter('en')).
 const FOOTER_COPY = {
   fr: {
-    tagline: 'Oser la démence artistique',
+    tagline: 'Livres, savoirs, création.',
+    follow: 'Suivre KOLA',
+    authors: 'Pages auteurs',
+    readers: 'Lecteurs',
+    review: 'Laisser un avis',
+    reviewHref: '/#avis',
+    allBooks: 'Tous les livres',
+    allBooksHref: '/projets/',
+    amazonAuthor: 'Cyril Mukendi sur Amazon',
+    leaAuthor: 'Léa Marlowe sur Amazon',
     disclaimer:
       'Ce contenu est présenté à titre créatif et éditorial&nbsp;; il ne remplace pas un avis médical ou psychologique professionnel.',
     rights: 'Tous droits réservés.',
     privacy: 'Politique de confidentialité',
   },
   en: {
-    tagline: 'Books, ideas, creation',
+    tagline: 'Books, ideas, creation.',
+    follow: 'Follow KOLA',
+    authors: 'Author pages',
+    readers: 'Readers',
+    review: 'Leave a review',
+    reviewHref: '/en/#reviews',
+    allBooks: 'All books',
+    allBooksHref: '/en/#books',
+    amazonAuthor: 'Cyril Mukendi on Amazon',
+    leaAuthor: 'Léa Marlowe on Amazon',
     disclaimer:
       'This content is presented for creative and editorial purposes; it does not replace professional medical or psychological advice.',
     rights: 'All rights reserved.',
@@ -140,23 +155,38 @@ export function renderFooter(lang = 'fr') {
 
   const year = new Date().getFullYear();
   const t = FOOTER_COPY[lang] || FOOTER_COPY.fr;
+  const ext = 'target="_blank" rel="noopener"';
 
   footer.innerHTML = `
+    <div class="site-footer__band" aria-hidden="true"></div>
     <div class="container">
       <div class="site-footer__row">
         <div>
-          <span class="brand">${BRAND_NAME}</span>
-          <p style="margin: 6px 0 0; font-size: 14px; opacity: 0.7;">${t.tagline}</p>
+          ${brandHtml(lang)}
+          <p style="margin: 10px 0 0;">${t.tagline}</p>
         </div>
-        <div class="site-footer__social">
-          <a class="nav-link" href="${SOCIAL.tiktok}" target="_blank" rel="noopener">TikTok</a>
-          <a class="nav-link" href="${SOCIAL.instagram}" target="_blank" rel="noopener">Instagram</a>
-          <a class="nav-link" href="${SOCIAL.facebook}" target="_blank" rel="noopener">Facebook</a>
-          <a class="nav-link" href="${SOCIAL.goodreads}" target="_blank" rel="noopener">Goodreads</a>
+        <div class="site-footer__cols">
+          <div class="site-footer__col">
+            <strong>${t.follow}</strong>
+            <a href="${SOCIAL.tiktok}" ${ext}>TikTok</a>
+            <a href="${SOCIAL.instagram}" ${ext}>Instagram</a>
+            <a href="${SOCIAL.facebook}" ${ext}>Facebook</a>
+          </div>
+          <div class="site-footer__col">
+            <strong>${t.authors}</strong>
+            <a href="${AMAZON_AUTHOR[lang] || AMAZON_AUTHOR.fr}" ${ext}>${t.amazonAuthor}</a>
+            <a href="${LEA_MARLOWE_AUTHOR[lang] || LEA_MARLOWE_AUTHOR.fr}" ${ext}>${t.leaAuthor}</a>
+            <a href="${SOCIAL.goodreads}" ${ext}>Goodreads</a>
+          </div>
+          <div class="site-footer__col">
+            <strong>${t.readers}</strong>
+            <a href="${t.allBooksHref}">${t.allBooks}</a>
+            <a href="${t.reviewHref}">${t.review}</a>
+          </div>
         </div>
       </div>
       <p class="disclaimer">${t.disclaimer}</p>
-      ${t.affiliate ? `<p class="disclaimer">${t.affiliate}</p>` : ''}
+      ${t.affiliate ? `<p class="disclaimer" style="margin-top: 8px;">${t.affiliate}</p>` : ''}
       <div class="site-footer__legal">
         <span>&copy; ${year} ${BRAND_NAME}. ${t.rights}</span>
         <a href="${PRIVACY_URL}" style="text-decoration: underline;">${t.privacy}</a>
@@ -178,7 +208,7 @@ export function renderSocialLinks(container) {
       (i) => `
       <a class="social-link" href="${SOCIAL[i.key]}" target="_blank" rel="noopener" aria-label="${BRAND_NAME} sur ${i.label}">
         <span class="social-badge" aria-hidden="true">${i.badge}</span>
-        <span style="font-size: 13px; font-weight: 600;">${i.label}</span>
+        <span style="font-size: 13px; font-weight: 700;">${i.label}</span>
       </a>`
     )
     .join('');

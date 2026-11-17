@@ -4,35 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KOLAidees — Livres, savoirs, création</title>
-  <meta name="description" content="KOLAidees est une identité éditoriale et créative dédiée aux savoirs, aux idées et à la création. Oser la démence artistique, Tome I — Le Manifeste, le guide Visibilité &amp; monétisation sur les réseaux sociaux et Arrête de trop penser." />
+  <meta name="description" content="KOLA Idées publie des livres pour oser et pour souffler : Arrête de trop penser, Oser la démence artistique, le guide Visibilité &amp; monétisation, leurs éditions anglaises, et la romance de Léa Marlowe." />
   <meta name="google-site-verification" content="oVd69sp8tIc1Q8s0ATxpwkXGzr-KUKBLS7X8G5EW5l4" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho+B1:wght@800&family=Noto+Sans+Egyptian+Hieroglyphs&family=Cinzel:wght@700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" />
+  <link rel="preload" as="image" href="/img/cave.jpg" />
 
   <!-- Open Graph — og:image is intentionally omitted: there is no real
        share image yet. Add it (from OG_IMAGE_URL) once one exists. -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="KOLAidees" />
   <meta property="og:title" content="KOLAidees — Livres, savoirs, création" />
-  <meta property="og:description" content="Une identité éditoriale et créative dédiée aux savoirs, aux idées et à la création. Découvrez Oser la démence artistique, Tome I — Le Manifeste." />
-  <!-- <meta property="og:image" content="OG_IMAGE_URL" /> -->
-
+  <meta property="og:description" content="Des livres pour oser, et pour souffler. Manifestes, guides pratiques et romance, en français et en anglais." />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="KOLAidees — Livres, savoirs, création" />
-  <meta name="twitter:description" content="Oser la démence artistique, Tome I — Le Manifeste, et les prochains projets de KOLAidees." />
-
+  <meta name="twitter:description" content="Des livres pour oser, et pour souffler. Manifestes, guides pratiques et romance, en français et en anglais." />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "KOLAidees",
-    "description": "Identité éditoriale et créative dédiée aux savoirs, aux idées et à la création.",
+    "description": "Maison d'édition indépendante : des livres pour grandir, d'une culture à l'autre, d'une langue à l'autre.",
     "sameAs": [
       "https://www.tiktok.com/@kola_idees",
       "https://www.instagram.com/kola.idees/",
-      "https://www.facebook.com/profile.php?id=61592982996384"
+      "https://www.facebook.com/profile.php?id=61592982996384",
+      "https://www.amazon.fr/stores/author/B0HJP5W3KN",
+      "https://www.goodreads.com/author/show/72300056.Cyril_Mukendi"
     ]
   }
   </script>
@@ -41,68 +41,169 @@
   <header id="site-header" class="site-header"></header>
 
   <main>
-    <section class="container" style="padding: 72px 24px 96px;">
-      <div class="hero-row" style="display: flex; align-items: center; gap: 64px;">
-        <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 22px;">
-          <span class="kicker">KOLAidees</span>
-          <h1 style="font-size: clamp(34px, 5vw, 56px); font-weight: 900;">Livres, savoirs, création.</h1>
-          <p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.5; margin: 0; max-width: 520px; opacity: 0.85;">Faire grandir les idées&nbsp;: KOLAidees publie des manifestes, des livres et des projets qui donnent une existence réelle à ce qu'on ose enfin créer.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px;">
-            <a class="btn btn-primary" href="/projets/oser-la-demence-artistique/">Découvrir le premier livre</a>
-            <a class="btn btn-ghost" href="/projets/">Voir tous les projets</a>
+    <!-- HERO : paroi de grotte -->
+    <section class="h-cave pad">
+      <div class="wrap">
+        <div>
+          <h1>Des livres pour <span>oser</span>, et pour souffler.</h1>
+          <p>Manifestes, guides pratiques et romance, en français et en anglais, sur Kindle et en broché.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#livres">Découvrir les livres</a>
+            <a class="btn btn-ghost" href="/en/" hreflang="en" lang="en">English books</a>
           </div>
         </div>
-        <div class="hero-visual" style="flex: 0 0 280px; display: flex; justify-content: center;">
-          <img src="/covers/oser-la-demence-artistique.jpg" width="280" height="448" alt="Couverture de Oser la démence artistique, Tome I — Le Manifeste, de Cyril Mukendi" style="width: 280px; height: auto; border-radius: 10px; box-shadow: 0 28px 60px rgba(22,19,15,0.28);" />
+        <div class="h-stack">
+          <img src="/covers/oser-la-demence-artistique.jpg" width="190" height="304" alt="Couverture de Oser la démence artistique" />
+          <img src="/covers/arrete-de-trop-penser.jpg" width="190" height="304" alt="Couverture de Arrête de trop penser" />
+        </div>
+        <div class="h-vert" aria-hidden="true">創造<small>CRÉATION</small></div>
+      </div>
+    </section>
+
+    <!-- LIVRES : mur de hiéroglyphes -->
+    <section class="h-wall pad" id="livres" style="scroll-margin-top: 70px;">
+      <div class="wrap">
+        <div class="head">
+          <span class="h-scribe" aria-hidden="true">𓏞</span>
+          <div>
+            <h2 class="h-title">Les livres</h2>
+            <p>Le signe du scribe, la palette et le calame&nbsp;: il y a cinq mille ans, déjà, on écrivait pour transmettre.</p>
+          </div>
+        </div>
+        <div class="shelf">
+          <article class="shelf-book">
+            <a class="cover" href="/projets/arrete-de-trop-penser/"><img src="/covers/arrete-de-trop-penser.jpg" width="200" height="320" alt="Couverture de Arrête de trop penser" loading="lazy" /></a>
+            <span class="tag">Nouveau</span>
+            <h3><a href="/projets/arrete-de-trop-penser/">Arrête de trop penser</a></h3>
+            <div class="buy">
+              <a class="btn btn-primary btn-small" href="https://www.amazon.fr/dp/B0HR3V2LPD" target="_blank" rel="noopener">Kindle 4,99&nbsp;€</a>
+              <a class="btn btn-ghost btn-small" href="https://www.amazon.fr/dp/B0HR53CZC1" target="_blank" rel="noopener">Broché 10,54&nbsp;€</a>
+            </div>
+          </article>
+          <article class="shelf-book">
+            <a class="cover" href="/projets/oser-la-demence-artistique/"><img src="/covers/oser-la-demence-artistique.jpg" width="200" height="320" alt="Couverture de Oser la démence artistique" loading="lazy" /></a>
+            <span class="tag">Manifeste</span>
+            <h3><a href="/projets/oser-la-demence-artistique/">Oser la démence artistique</a></h3>
+            <div class="buy">
+              <a class="btn btn-primary btn-small" href="https://www.amazon.fr/dp/B0HJ8JXMN8" target="_blank" rel="noopener">Kindle 4,99&nbsp;€</a>
+              <a class="btn btn-ghost btn-small" href="https://www.amazon.fr/dp/B0HJ7PGWLV" target="_blank" rel="noopener">Broché 16,99&nbsp;€</a>
+            </div>
+          </article>
+          <article class="shelf-book">
+            <a class="cover" href="/projets/visibilite-et-monetisation-reseaux-sociaux/"><img src="/covers/guide-visibilite-monetisation.jpg" width="200" height="320" alt="Couverture du guide Visibilité et monétisation sur les réseaux sociaux" loading="lazy" /></a>
+            <span class="tag">Guide</span>
+            <h3><a href="/projets/visibilite-et-monetisation-reseaux-sociaux/">Visibilité &amp; monétisation</a></h3>
+            <div class="buy">
+              <a class="btn btn-primary btn-small" href="https://www.amazon.fr/dp/B0HQD4M6GS" target="_blank" rel="noopener">Kindle 4,99&nbsp;€</a>
+            </div>
+          </article>
+          <article class="shelf-book" lang="en">
+            <a class="cover" href="/stop-overthinking/"><img src="/covers/stop-overthinking.jpg" width="200" height="320" alt="Cover of Stop Overthinking" loading="lazy" /></a>
+            <span class="tag">English</span>
+            <h3><a href="/stop-overthinking/">Stop Overthinking</a></h3>
+            <div class="buy">
+              <a class="btn btn-primary btn-small" href="https://www.amazon.com/dp/B0HR2T6VWR?tag=cyril0e3-20" target="_blank" rel="noopener">Kindle $4.99</a>
+              <a class="btn btn-ghost btn-small" href="https://www.amazon.com/dp/B0HR44Z5RC?tag=cyril0e3-20" target="_blank" rel="noopener">Paperback $9.99</a>
+            </div>
+          </article>
+          <article class="shelf-book" lang="en">
+            <a class="cover" href="/daring-artistic-madness/"><img src="/covers/daring-artistic-madness.jpg" width="200" height="320" alt="Cover of Daring Artistic Madness" loading="lazy" /></a>
+            <span class="tag">English</span>
+            <h3><a href="/daring-artistic-madness/">Daring Artistic Madness</a></h3>
+            <div class="buy">
+              <a class="btn btn-primary btn-small" href="https://www.amazon.com/dp/B0HLVTC57T?tag=cyril0e3-20" target="_blank" rel="noopener">Kindle $4.99</a>
+              <a class="btn btn-ghost btn-small" href="https://www.amazon.com/dp/B0HLWL8P9V?tag=cyril0e3-20" target="_blank" rel="noopener">Paperback $16.99</a>
+            </div>
+          </article>
+        </div>
+        <p class="h-more">Tous les livres de Cyril Mukendi sur sa <a href="https://www.amazon.fr/stores/author/B0HJP5W3KN" target="_blank" rel="noopener">page auteur Amazon</a>.</p>
+      </div>
+    </section>
+
+    <!-- PLUME : le nouveau livre -->
+    <section class="h-room pad">
+      <div class="wrap">
+        <img class="h-feather" src="/img/feather.jpg" width="350" height="625" alt="Plume ornée de deux perles turquoise" loading="lazy" />
+        <img class="cover-big" src="/covers/arrete-de-trop-penser.jpg" width="260" height="416" alt="Couverture de Arrête de trop penser" loading="lazy" />
+        <div>
+          <div class="h-kanji">考 <span>penser</span></div>
+          <h2 class="h-title">Léger comme une plume, en 21&nbsp;jours.</h2>
+          <p>Un chapitre court et un exercice concret par jour pour calmer ton mental, lâcher prise et ne plus tout prendre à cœur.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://www.amazon.fr/dp/B0HR3V2LPD" target="_blank" rel="noopener">Lire sur Amazon</a>
+            <a class="btn btn-ghost" href="/projets/arrete-de-trop-penser/">Le livre en détail</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="container" style="padding: 0 24px 96px;">
-      <div class="card" style="padding: 36px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
-        <div style="display: flex; gap: 22px; align-items: center; flex-wrap: wrap;">
-          <img src="/covers/oser-la-demence-artistique.jpg" width="84" height="134" alt="" style="border-radius: 6px; box-shadow: 0 10px 24px rgba(22,19,15,0.2);" />
-          <div style="flex: 1 1 260px;">
-            <span class="kicker">Premier projet</span>
-            <h2 style="font-size: 24px; font-weight: 900; margin-top: 8px;">Oser la démence artistique — Tome I&nbsp;: Le Manifeste</h2>
-            <p style="margin: 8px 0 0; font-size: 15px; opacity: 0.8; max-width: 520px;">Un manifeste incisif, drôle et pragmatique pour déconstruire la censure intérieure et créer sans demander la permission.</p>
-          </div>
+    <!-- À PROPOS : le masque -->
+    <section class="h-about pad" id="kola">
+      <div class="wrap">
+        <div class="txt">
+          <h2 class="h-title">Des idées venues de partout.</h2>
+          <p>KOLA, c'est la noix de kola qu'on partage en Afrique de l'Ouest pour accueillir et ouvrir la parole. KOLA Idées publie des livres dans le même esprit&nbsp;: des idées qui circulent, d'une culture à l'autre, d'une langue à l'autre, pour nous permettre de grandir et de nous libérer de nos limites.</p>
+          <p class="h-lingala"><b>KOLA</b> veut aussi dire «&nbsp;grandir&nbsp;» en lingala et en tshiluba (RD Congo).</p>
         </div>
-        <a class="btn btn-primary" href="/projets/oser-la-demence-artistique/">Lire le manifeste</a>
-      </div>
-      <div class="card" style="padding: 36px; margin-top: 20px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
-        <div style="display: flex; gap: 22px; align-items: center; flex-wrap: wrap;">
-          <img src="/covers/guide-visibilite-monetisation.jpg" width="84" height="134" alt="" style="border-radius: 6px; box-shadow: 0 10px 24px rgba(22,19,15,0.2);" />
-          <div style="flex: 1 1 260px;">
-            <span class="kicker">Guide pratique</span>
-            <h2 style="font-size: 24px; font-weight: 900; margin-top: 8px;">Visibilité &amp; monétisation sur les réseaux sociaux</h2>
-            <p style="margin: 8px 0 0; font-size: 15px; opacity: 0.8; max-width: 520px;">De 0 à 10&nbsp;000 abonnés, palier par palier, sur TikTok, Instagram, Facebook et YouTube Shorts. Europe &amp; Afrique francophone.</p>
-          </div>
-        </div>
-        <a class="btn btn-primary" href="/projets/visibilite-et-monetisation-reseaux-sociaux/">Découvrir le guide</a>
-      </div>
-      <div class="card" style="padding: 36px; margin-top: 20px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
-        <div style="display: flex; gap: 22px; align-items: center; flex-wrap: wrap;">
-          <img src="/covers/arrete-de-trop-penser.jpg" width="84" height="134" alt="" style="border-radius: 6px; box-shadow: 0 10px 24px rgba(22,19,15,0.2);" />
-          <div style="flex: 1 1 260px;">
-            <span class="kicker">Nouveau — 21 jours</span>
-            <h2 style="font-size: 24px; font-weight: 900; margin-top: 8px;">Arrête de trop penser</h2>
-            <p style="margin: 8px 0 0; font-size: 15px; opacity: 0.8; max-width: 520px;">Un chapitre court et un exercice concret par jour pour calmer ton mental, lâcher prise et ne plus tout prendre à cœur.</p>
-          </div>
-        </div>
-        <a class="btn btn-primary" href="/projets/arrete-de-trop-penser/">Découvrir le livre</a>
+        <img class="h-mask" src="/img/mask.jpg" width="405" height="540" alt="Masque africain en bois sculpté" loading="lazy" />
       </div>
     </section>
 
+    <!-- PLUMES INVITÉES : Grèce antique -->
+    <div class="meander" aria-hidden="true"></div>
+    <section class="h-greece pad" id="plumes" style="scroll-margin-top: 70px;">
+      <div class="wrap">
+        <div class="top">
+          <div>
+            <h2>Plumes invitées</h2>
+            <p class="intro">Noms de plume et autres auteurs publiés par KOLA Idées. On commence par <em>une ondine</em>, nymphe des eaux, comme celles que les Grecs peignaient sur leurs vases.</p>
+          </div>
+          <img class="h-amphora" src="/img/amphora.jpg" width="210" height="280" alt="Nymphe marchant sur les vagues, peinture de vase grec" loading="lazy" />
+        </div>
+        <article class="pen">
+          <div class="pair">
+            <img src="/covers/l-ete-de-l-ondine.jpg" width="150" height="240" alt="Couverture de L'Été de L'Ondine, de Léa Marlowe" loading="lazy" />
+            <img src="/covers/the-summer-of-the-ondine.jpg" width="150" height="240" alt="Cover of The Summer of the Ondine, by Léa Marlowe" loading="lazy" />
+          </div>
+          <div>
+            <h3><a href="https://www.amazon.fr/stores/author/B0HRTT928W" target="_blank" rel="noopener">Léa Marlowe</a></h3>
+            <p class="genre">Romance contemporaine · Les Saisons de l'île, tome&nbsp;1</p>
+            <p>Sur une île bretonne, Maëlle tient l'auberge familiale. Un été, Julien, charpentier de marine, arrive au chantier du port. Une histoire d'amour inspirée d'une histoire vraie.</p>
+            <div class="rows">
+              <div class="row"><span>L'Été de L'Ondine (FR)</span><a class="btn btn-gold btn-small" href="https://www.amazon.fr/dp/B0HRS2LJWC" target="_blank" rel="noopener">Kindle 3,99&nbsp;€</a><a class="btn btn-ghost btn-small" href="https://www.amazon.fr/dp/B0HRSRG412" target="_blank" rel="noopener">Broché 10,54&nbsp;€</a></div>
+              <div class="row" lang="en"><span>The Summer of the Ondine (EN)</span><a class="btn btn-gold btn-small" href="https://www.amazon.com/dp/B0HRSJWXQX?tag=cyril0e3-20" target="_blank" rel="noopener">Kindle $3.99</a><a class="btn btn-ghost btn-small" href="https://www.amazon.com/dp/B0HRSKKPVM?tag=cyril0e3-20" target="_blank" rel="noopener">Paperback $9.99</a></div>
+            </div>
+          </div>
+        </article>
+        <p class="next">D'autres plumes rejoindront bientôt la maison.</p>
+      </div>
+    </section>
+    <div class="meander" aria-hidden="true"></div>
+
+    <!-- AVIS -->
+    <section class="h-reviews pad" id="avis" style="scroll-margin-top: 70px;">
+      <div class="wrap">
+        <h2 class="h-title">Vous avez lu un de nos livres&nbsp;?</h2>
+        <p>Votre avis, même en deux lignes, aide d'autres lecteurs à trouver le livre. Laissez-le sur Amazon ou sur Goodreads.</p>
+        <div class="reviews-grid">
+          <div class="review-row"><img src="/covers/arrete-de-trop-penser.jpg" width="56" height="90" alt="" loading="lazy" /><div><strong>Arrête de trop penser</strong><div class="buy"><a class="btn btn-primary btn-small" href="https://www.amazon.fr/review/create-review?asin=B0HR3V2LPD" target="_blank" rel="noopener">Avis Amazon</a><a class="btn btn-ghost btn-small" href="https://www.goodreads.com/book/show/264293752-arr-te-de-trop-penser" target="_blank" rel="noopener">Goodreads</a></div></div></div>
+          <div class="review-row"><img src="/covers/oser-la-demence-artistique.jpg" width="56" height="90" alt="" loading="lazy" /><div><strong>Oser la démence artistique</strong><div class="buy"><a class="btn btn-primary btn-small" href="https://www.amazon.fr/review/create-review?asin=B0HJ8JXMN8" target="_blank" rel="noopener">Avis Amazon</a><a class="btn btn-ghost btn-small" href="https://www.goodreads.com/book/show/258619508-oser-la-d-mence-artistique" target="_blank" rel="noopener">Goodreads</a></div></div></div>
+          <div class="review-row"><img src="/covers/guide-visibilite-monetisation.jpg" width="56" height="90" alt="" loading="lazy" /><div><strong>Visibilité &amp; monétisation</strong><div class="buy"><a class="btn btn-primary btn-small" href="https://www.amazon.fr/review/create-review?asin=B0HQD4M6GS" target="_blank" rel="noopener">Avis Amazon</a><a class="btn btn-ghost btn-small" href="https://www.goodreads.com/book/show/263258914-visibilit-mon-tisation-sur-les-r-seaux-sociaux" target="_blank" rel="noopener">Goodreads</a></div></div></div>
+          <div class="review-row"><img src="/covers/l-ete-de-l-ondine.jpg" width="56" height="90" alt="" loading="lazy" /><div><strong>L'Été de L'Ondine</strong><div class="buy"><a class="btn btn-primary btn-small" href="https://www.amazon.fr/review/create-review?asin=B0HRS2LJWC" target="_blank" rel="noopener">Avis Amazon</a></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
     <section id="newsletter-root" class="newsletter">
       <div class="container">
         <h2>Restez informé&middot;e</h2>
-        <p>Recevez les prochaines étapes du manifeste et les nouveautés de KOLAidees.</p>
+        <p>Recevez les nouveaux livres et les nouveautés de KOLA Idées.</p>
         <p class="newsletter-confirmation" data-newsletter-confirmation hidden></p>
         <form class="newsletter-form">
-          <label for="home-email" class="sr-only" style="position: absolute; left: -9999px;">Adresse email</label>
+          <label for="home-email" class="sr-only">Adresse email</label>
           <input class="email-input" id="home-email" name="email" type="email" required placeholder="votre@email.com" />
-          <button type="submit" class="btn btn-primary">Recevoir les nouveautés de KOLAidees</button>
+          <button type="submit" class="btn btn-primary">Recevoir les nouveautés</button>
         </form>
       </div>
     </section>
