@@ -78,28 +78,50 @@ img, svg { max-width: 100%; display: block; }
   white-space: nowrap;
   transition: transform .15s cubic-bezier(.16,1,.3,1), box-shadow .15s, background .2s, color .2s;
 }
-/* Raised (volume): top highlight, solid lower edge, sinks when pressed. */
+/* Engraved stone tablet: sandstone grain, chiselled bevel, slightly uneven
+   corners, letters cut into the stone and filled with ochre-red pigment.
+   Sinks into place when pressed. */
 .btn-primary, .btn-raised {
-  color: var(--cream);
-  background: linear-gradient(180deg, #D1572F 0%, var(--accent) 55%, #A23517 100%);
-  box-shadow: inset 0 1px 0 rgba(255,220,190,.55), 0 5px 0 var(--accent-dk), 0 10px 18px rgba(22,17,13,.3);
+  --tablet-edge: #6E5F48;
+  color: #8E2A10;
+  letter-spacing: .02em;
+  text-shadow: 0 1px 0 rgba(255,250,235,.7), 0 -1px 0 rgba(60,30,10,.45);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .2 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 30% 20%, rgba(255,250,235,.45), transparent 60%),
+    linear-gradient(180deg, #DCCFB2 0%, #C9B892 60%, #B5A37C 100%);
+  border: 1px solid rgba(80,62,40,.55);
+  border-radius: 7px 3px 8px 2px / 3px 8px 2px 7px;
+  box-shadow:
+    inset 2px 2px 0 rgba(255,250,235,.55),
+    inset -2px -3px 0 rgba(70,52,30,.35),
+    0 4px 0 var(--tablet-edge),
+    0 9px 16px rgba(22,17,13,.38);
   transform: translateY(-2px);
 }
 .btn-primary:hover, .btn-raised:hover {
+  color: #A8320F;
   transform: translateY(-4px);
-  box-shadow: inset 0 1px 0 rgba(255,220,190,.55), 0 7px 0 var(--accent-dk), 0 14px 22px rgba(22,17,13,.3);
+  box-shadow:
+    inset 2px 2px 0 rgba(255,250,235,.6),
+    inset -2px -3px 0 rgba(70,52,30,.35),
+    0 6px 0 var(--tablet-edge),
+    0 14px 22px rgba(22,17,13,.38);
 }
 .btn-primary:active, .btn-raised:active {
-  transform: translateY(3px);
-  box-shadow: inset 0 1px 0 rgba(255,220,190,.4), 0 0 0 var(--accent-dk), 0 3px 6px rgba(22,17,13,.25);
+  transform: translateY(2px);
+  box-shadow:
+    inset 2px 3px 6px rgba(70,52,30,.45),
+    0 0 0 var(--tablet-edge),
+    0 2px 4px rgba(22,17,13,.3);
 }
 .btn-ghost { background: transparent; color: inherit; border-color: currentColor; }
 .btn-ghost:hover { background: rgba(127,127,127,.14); }
 .btn-small { padding: 8px 12px; font-size: 13.5px; }
 .btn-small.btn-primary, .btn-small.btn-raised {
-  box-shadow: inset 0 1px 0 rgba(255,220,190,.55), 0 3px 0 var(--accent-dk), 0 6px 10px rgba(22,17,13,.22);
+  box-shadow: inset 1px 1px 0 rgba(255,250,235,.55), inset -1px -2px 0 rgba(70,52,30,.35), 0 3px 0 var(--tablet-edge), 0 6px 10px rgba(22,17,13,.3);
 }
-.btn-small.btn-primary:active, .btn-small.btn-raised:active { transform: translateY(2px); box-shadow: 0 0 0 var(--accent-dk); }
+.btn-small.btn-primary:active, .btn-small.btn-raised:active { transform: translateY(2px); box-shadow: inset 1px 2px 4px rgba(70,52,30,.45), 0 0 0 var(--tablet-edge); }
 .btn-gold {
   color: var(--aegean-dk);
   background: linear-gradient(180deg, #E3BC67 0%, var(--gold) 55%, #A97F2C 100%);
@@ -127,7 +149,8 @@ img, svg { max-width: 100%; display: block; }
   gap: 16px; padding: 12px 24px; min-height: 68px;
 }
 .brand { font-family: var(--font-display); font-size: 21px; letter-spacing: .02em; display: inline-flex; align-items: center; gap: 12px; }
-.brand img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.brand img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(201,154,62,.5); }
+.site-footer .brand img { width: 96px; height: 96px; }
 .desktop-nav { display: flex; align-items: center; gap: 26px; }
 .nav-link { font-size: 15px; font-weight: 500; padding: 8px 2px; }
 .nav-link:hover, .nav-link[aria-current="page"] { color: var(--accent-lt); }
@@ -323,3 +346,8 @@ a.lang-switch__item:hover, .lang-switch__item[aria-current="true"] { color: var(
 /* Book pages: long quotes once set in the display face read better in the
    Greek-room serif than in the heavy poster face. */
 main p[style*="var(--font-display)"] { font-family: var(--font-greek-body) !important; font-weight: 500 !important; }
+
+/* Tablet lettering: Roman capitals, as cut into stone. */
+.btn-primary, .btn-raised { font-family: var(--font-greek); font-weight: 700; font-size: 15px; letter-spacing: .04em; }
+.btn-small.btn-primary, .btn-small.btn-raised { font-size: 13.5px; }
+@media (max-width: 900px) { .h-stack { margin-left: 18px; } }

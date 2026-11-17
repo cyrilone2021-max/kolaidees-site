@@ -55,7 +55,7 @@ export const ONDINE = {
 
 // Logo with Kuba patterns (the social profile picture). Empty until the
 // original file is added to public/img/: the header then shows the wordmark only.
-export const LOGO_URL = '';
+export const LOGO_URL = '/img/logo-kola-192.png';
 
 // --- Not-yet-real values -------------------------------------------------
 // These are intentionally empty: the site is not deployed, so there is no
